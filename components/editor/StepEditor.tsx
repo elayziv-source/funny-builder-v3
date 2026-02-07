@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useFunnel } from '../../context/FunnelContext';
 import { TEMPLATE_OPTIONS, TEMPLATE_CATEGORIES, TemplateCategory } from '../../constants';
-import { Trash2, Plus, Image as ImageIcon, ChevronDown, ChevronUp, GripVertical, Copy, Settings, Layers, Activity, Type, Hammer, BoxSelect, ShieldCheck, Brain } from 'lucide-react';
+import { Trash2, Plus, Image as ImageIcon, ChevronDown, ChevronUp, GripVertical, Copy, Settings, Layers, Activity, Type, Hammer, BoxSelect, ShieldCheck, Brain, GitBranch, ArrowRight } from 'lucide-react';
 import * as Icons from 'lucide-react';
 import { ExportMenu } from '../ui/ExportMenu';
 import { BlockItem, BlockType } from '../../types';
@@ -23,8 +23,158 @@ const getQuizPhaseForEditor = (path: string) => {
   return QUIZ_PHASES[3];
 };
 
+
+// Resolve template fields dynamically from template definition
+interface TemplateFieldMap {
+  titleField: string;
+  titleFont: string;
+  subtitleField: string;
+  subtitleFont: string;
+  imageField: string;
+  imageAltField: string;
+  buttonTextField: string;
+  htmlField: string;
+  extraFields: { key: string; label: string; type: 'text' | 'image' | 'html' | 'color' | 'event' }[];
+}
+
+const resolveTemplateFields = (templateDef: any): TemplateFieldMap => {
+  const defaults: TemplateFieldMap = {
+    titleField: '_title_text',
+    titleFont: '_title_font',
+    subtitleField: '_sub_title_text',
+    subtitleFont: '_sub_title_font',
+    imageField: '_image_src',
+    imageAltField: '_image_alt',
+    buttonTextField: '_button_text',
+    htmlField: '_html',
+    extraFields: [],
+  };
+
+  if (!templateDef) return defaults;
+
+  const foundFields = new Set<string>();
+  let titleResolved = false;
+  let subtitleResolved = false;
+  let imageResolved = false;
+  let buttonResolved = false;
+
+  const walk = (node: any) => {
+    if (!node) return;
+    const comp = node.component;
+    const props = node.props || {};
+
+    // Resolve title: first Text with font=title or element=h1
+    if (comp === 'Text' && !titleResolved) {
+      const textField = props.text || props.html;
+      if (textField && typeof textField === 'string' && textField.startsWith('_')) {
+        if (props.font === 'title' || props.element === 'h1') {
+          defaults.titleField = textField;
+          if (props.html) defaults.titleField = textField;
+          titleResolved = true;
+          foundFields.add(textField);
+        }
+      }
+    }
+
+    // Resolve subtitle: first Text with font=sub_title (after title found)
+    if (comp === 'Text' && titleResolved && !subtitleResolved) {
+      const textField = props.text || props.html;
+      if (textField && typeof textField === 'string' && textField.startsWith('_') && !foundFields.has(textField)) {
+        if (props.font === 'sub_title' || props.font === 'body') {
+          defaults.subtitleField = textField;
+          subtitleResolved = true;
+          foundFields.add(textField);
+        }
+      }
+    }
+
+    // Resolve image: first ImageBox
+    if ((comp === 'ImageBox' || comp === 'Image') && !imageResolved) {
+      if (props.src && typeof props.src === 'string' && props.src.startsWith('_')) {
+        defaults.imageField = props.src;
+        if (props.alt && typeof props.alt === 'string' && props.alt.startsWith('_')) {
+          defaults.imageAltField = props.alt;
+        }
+        imageResolved = true;
+        foundFields.add(props.src);
+        if (props.alt) foundFields.add(props.alt);
+      }
+    }
+
+    // Resolve button: first Button
+    if (comp === 'Button' && !buttonResolved) {
+      if (props.text && typeof props.text === 'string' && props.text.startsWith('_')) {
+        defaults.buttonTextField = props.text;
+        buttonResolved = true;
+        foundFields.add(props.text);
+      }
+    }
+
+    // Collect extra text/html fields
+    if (comp === 'Text') {
+      const field = props.text || props.html;
+      if (field && typeof field === 'string' && field.startsWith('_') && !foundFields.has(field)) {
+        const isHtml = !!props.html;
+        defaults.extraFields.push({
+          key: field,
+          label: field.replace(/^_/, '').replace(/_/g, ' '),
+          type: isHtml ? 'html' : 'text',
+        });
+        foundFields.add(field);
+      }
+    }
+
+    // Collect extra buttons
+    if (comp === 'Button' && buttonResolved) {
+      if (props.text && typeof props.text === 'string' && props.text.startsWith('_') && !foundFields.has(props.text)) {
+        defaults.extraFields.push({
+          key: props.text,
+          label: props.text.replace(/^_/, '').replace(/_/g, ' '),
+          type: 'text',
+        });
+        foundFields.add(props.text);
+      }
+      if (props.on_click && typeof props.on_click === 'string' && props.on_click.startsWith('_') && !foundFields.has(props.on_click)) {
+        defaults.extraFields.push({
+          key: props.on_click,
+          label: props.on_click.replace(/^_/, '').replace(/_/g, ' '),
+          type: 'event',
+        });
+        foundFields.add(props.on_click);
+      }
+      if (props.background_color && typeof props.background_color === 'string' && props.background_color.startsWith('_') && !foundFields.has(props.background_color)) {
+        defaults.extraFields.push({
+          key: props.background_color,
+          label: props.background_color.replace(/^_/, '').replace(/_/g, ' '),
+          type: 'color',
+        });
+        foundFields.add(props.background_color);
+      }
+    }
+
+    // Collect extra images
+    if ((comp === 'ImageBox' || comp === 'Image') && imageResolved) {
+      if (props.src && typeof props.src === 'string' && props.src.startsWith('_') && !foundFields.has(props.src)) {
+        defaults.extraFields.push({
+          key: props.src,
+          label: props.src.replace(/^_/, '').replace(/_/g, ' '),
+          type: 'image',
+        });
+        foundFields.add(props.src);
+      }
+    }
+
+    // Recurse children
+    if (Array.isArray(node.children)) {
+      node.children.forEach(walk);
+    }
+  };
+
+  walk(templateDef);
+  return defaults;
+};
 export const StepEditor: React.FC = () => {
-  const { config, activePageId, updatePage, deletePage, downloadPageConfig, copyToClipboard } = useFunnel();
+  const { config, activePageId, updatePage, updateEvents, deletePage, downloadPageConfig, copyToClipboard } = useFunnel();
   const activePage = config.pages[activePageId];
   const [showTemplates, setShowTemplates] = useState(false);
   const [activeTab, setActiveTab] = useState<'content' | 'settings'>('content');
@@ -39,6 +189,10 @@ export const StepEditor: React.FC = () => {
       </div>
     );
   }
+
+  // Resolve field names from template definition
+  const templateDef = config.templates?.[activePage.template];
+  const fieldMap = resolveTemplateFields(templateDef);
 
   const handleChange = (field: string, value: any) => {
     updatePage(activePageId, { ...activePage, [field]: value });
@@ -681,8 +835,8 @@ export const StepEditor: React.FC = () => {
                         <div className="flex justify-between items-center mb-1">
                             <label className="text-xs font-bold text-gray-500 uppercase">Title</label>
                             <select 
-                                value={activePage.template_data?._title_font || 'title'} 
-                                onChange={(e) => handleDataChange('_title_font', e.target.value)}
+                                value={activePage.template_data?.[fieldMap.titleFont] || 'title'} 
+                                onChange={(e) => handleDataChange(fieldMap.titleFont, e.target.value)}
                                 className="text-xs bg-gray-100 border-none rounded px-2 py-0.5 text-gray-600 focus:ring-0"
                                 title="Select Font Style"
                             >
@@ -690,8 +844,8 @@ export const StepEditor: React.FC = () => {
                             </select>
                         </div>
                         <textarea 
-                            value={activePage.template_data?._title_text || ''} 
-                            onChange={(e) => handleDataChange('_title_text', e.target.value)}
+                            value={activePage.template_data?.[fieldMap.titleField] || ''} 
+                            onChange={(e) => handleDataChange(fieldMap.titleField, e.target.value)}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none resize-none font-bold text-gray-800"
                             placeholder="Enter main title..."
                             rows={2}
@@ -701,8 +855,8 @@ export const StepEditor: React.FC = () => {
                         <div className="flex justify-between items-center mb-1">
                             <label className="text-xs font-bold text-gray-500 uppercase">Subtitle</label>
                             <select 
-                                value={activePage.template_data?._sub_title_font || 'sub_title'} 
-                                onChange={(e) => handleDataChange('_sub_title_font', e.target.value)}
+                                value={activePage.template_data?.[fieldMap.subtitleFont] || 'sub_title'} 
+                                onChange={(e) => handleDataChange(fieldMap.subtitleFont, e.target.value)}
                                 className="text-xs bg-gray-100 border-none rounded px-2 py-0.5 text-gray-600 focus:ring-0"
                                 title="Select Font Style"
                             >
@@ -710,8 +864,8 @@ export const StepEditor: React.FC = () => {
                             </select>
                         </div>
                         <textarea 
-                            value={activePage.template_data?._sub_title_text || ''} 
-                            onChange={(e) => handleDataChange('_sub_title_text', e.target.value)}
+                            value={activePage.template_data?.[fieldMap.subtitleField] || ''} 
+                            onChange={(e) => handleDataChange(fieldMap.subtitleField, e.target.value)}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none text-gray-600 resize-none"
                             rows={3}
                             placeholder="Enter description text..."
@@ -720,8 +874,8 @@ export const StepEditor: React.FC = () => {
                     <div className="group">
                         <label className="block text-xs font-bold text-gray-400 mb-1 uppercase group-hover:text-gray-600 transition-colors">HTML Title Override (Optional)</label>
                         <textarea 
-                            value={activePage.template_data?._html || ''} 
-                            onChange={(e) => handleDataChange('_html', e.target.value)}
+                            value={activePage.template_data?.[fieldMap.htmlField] || ''} 
+                            onChange={(e) => handleDataChange(fieldMap.htmlField, e.target.value)}
                             className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 outline-none font-mono text-xs bg-gray-50 text-gray-500 group-hover:bg-white group-hover:border-gray-300 transition-all"
                             rows={1}
                             placeholder="<span>HTML...</span>"
@@ -738,22 +892,22 @@ export const StepEditor: React.FC = () => {
                             <div className="flex-1">
                                 <input 
                                     type="text" 
-                                    value={activePage.template_data?._image_src || ''} 
-                                    onChange={(e) => handleDataChange('_image_src', e.target.value)}
+                                    value={activePage.template_data?.[fieldMap.imageField] || ''} 
+                                    onChange={(e) => handleDataChange(fieldMap.imageField, e.target.value)}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm mb-2"
                                     placeholder="https://..."
                                 />
                                 <input 
                                     type="text" 
-                                    value={activePage.template_data?._image_alt || ''} 
-                                    onChange={(e) => handleDataChange('_image_alt', e.target.value)}
+                                    value={activePage.template_data?.[fieldMap.imageAltField] || ''} 
+                                    onChange={(e) => handleDataChange(fieldMap.imageAltField, e.target.value)}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-lg text-xs"
                                     placeholder="Alt Text"
                                 />
                             </div>
-                            {activePage.template_data?._image_src && (
+                            {activePage.template_data?.[fieldMap.imageField] && (
                                 <div className="w-24 h-24 rounded-lg overflow-hidden border border-gray-300 bg-white flex-shrink-0">
-                                    <img src={activePage.template_data._image_src} className="w-full h-full object-cover" />
+                                    <img src={activePage.template_data[fieldMap.imageField]} className="w-full h-full object-cover" />
                                 </div>
                             )}
                         </div>
@@ -814,12 +968,71 @@ export const StepEditor: React.FC = () => {
                     <label className="block text-xs font-bold text-gray-500 mb-1 uppercase">Button Text</label>
                     <input 
                         type="text" 
-                        value={activePage.template_data?._button_text || ''} 
-                        onChange={(e) => handleDataChange('_button_text', e.target.value)}
+                        value={activePage.template_data?.[fieldMap.buttonTextField] || ''} 
+                        onChange={(e) => handleDataChange(fieldMap.buttonTextField, e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                         placeholder="CONTINUE"
                     />
                 </div>
+                {/* Extra Template Fields — auto-detected from template definition */}
+                {fieldMap.extraFields.length > 0 && (
+                    <div className="space-y-3 border-t border-gray-100 pt-4 mt-4">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider flex items-center gap-1">
+                            <Layers size={12} /> Additional Template Fields
+                        </label>
+                        {fieldMap.extraFields.map(ef => (
+                            <div key={ef.key}>
+                                <label className="block text-[10px] font-bold text-gray-500 uppercase mb-1">{ef.label}</label>
+                                {ef.type === 'html' ? (
+                                    <textarea
+                                        value={activePage.template_data?.[ef.key] || ''}
+                                        onChange={(e) => handleDataChange(ef.key, e.target.value)}
+                                        className="w-full px-3 py-2 border border-gray-200 rounded-lg font-mono text-xs bg-gray-50 focus:ring-2 focus:ring-red-500 outline-none"
+                                        rows={3}
+                                        placeholder="<span>HTML content...</span>"
+                                    />
+                                ) : ef.type === 'image' ? (
+                                    <div className="flex gap-2 items-center">
+                                        <input
+                                            type="text"
+                                            value={activePage.template_data?.[ef.key] || ''}
+                                            onChange={(e) => handleDataChange(ef.key, e.target.value)}
+                                            className="flex-1 px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
+                                            placeholder="https://..."
+                                        />
+                                        {activePage.template_data?.[ef.key] && (
+                                            <img src={activePage.template_data[ef.key]} className="w-10 h-10 rounded border object-cover" />
+                                        )}
+                                    </div>
+                                ) : ef.type === 'event' ? (
+                                    <input
+                                        type="text"
+                                        value={activePage.template_data?.[ef.key] || ''}
+                                        onChange={(e) => handleDataChange(ef.key, e.target.value)}
+                                        className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm font-mono bg-purple-50"
+                                        placeholder="event_name"
+                                    />
+                                ) : ef.type === 'color' ? (
+                                    <input
+                                        type="text"
+                                        value={activePage.template_data?.[ef.key] || ''}
+                                        onChange={(e) => handleDataChange(ef.key, e.target.value)}
+                                        className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
+                                        placeholder="primary / blue / custom hex"
+                                    />
+                                ) : (
+                                    <input
+                                        type="text"
+                                        value={activePage.template_data?.[ef.key] || ''}
+                                        onChange={(e) => handleDataChange(ef.key, e.target.value)}
+                                        className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
+                                        placeholder={"Enter " + ef.label + "..."}
+                                    />
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                )}
             </section>
             )}
 
@@ -1055,6 +1268,115 @@ export const StepEditor: React.FC = () => {
                             </div>
                         )}
                     </div>
+                </section>
+
+                {/* Connected Events — shows events triggered by this page */}
+                <section className="space-y-3 border-t border-gray-100 pt-6">
+                    <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
+                        <Activity size={16} className="text-blue-500" />
+                        Page Events &amp; Routing
+                    </h3>
+                    <p className="text-[10px] text-gray-400">Events triggered by buttons and interactions on this page.</p>
+
+                    {(() => {
+                        const connectedEvents: { fieldKey: string; fieldLabel: string; eventName: string; eventLogic: any }[] = [];
+                        if (activePage.template_data) {
+                            Object.entries(activePage.template_data).forEach(([key, val]) => {
+                                if (typeof val === 'string' && config.event_routing?.[val]) {
+                                    connectedEvents.push({
+                                        fieldKey: key,
+                                        fieldLabel: key.replace(/^_on_/, '').replace(/^_/, '').replace(/_/g, ' '),
+                                        eventName: val,
+                                        eventLogic: config.event_routing[val],
+                                    });
+                                }
+                            });
+                        }
+
+                        if (connectedEvents.length === 0) {
+                            return (
+                                <div className="text-xs text-gray-400 italic bg-gray-50 rounded-lg p-4 text-center">
+                                    No events connected to this page. Events are linked via <code className="bg-gray-200 px-1 rounded">_on_*</code> fields in template data.
+                                </div>
+                            );
+                        }
+
+                        const availablePaths = Object.entries(config.pages)
+                            .filter(([k]) => k !== '__template_preview__')
+                            .map(([k, p]: [string, any]) => ({ path: p.path, name: p.name || k }))
+                            .sort((a, b) => parseInt(a.path) - parseInt(b.path));
+
+                        return (
+                            <div className="space-y-3">
+                                {connectedEvents.map(({ fieldKey, fieldLabel, eventName, eventLogic }) => (
+                                    <div key={fieldKey} className="border border-blue-100 bg-blue-50/30 rounded-xl p-3 space-y-2">
+                                        {/* Event header */}
+                                        <div className="flex items-center gap-2 text-xs">
+                                            <span className="bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full font-bold text-[10px] uppercase">{fieldLabel}</span>
+                                            <ArrowRight size={12} className="text-gray-400" />
+                                            <span className="font-mono font-bold text-[#f51721] text-[11px]">{eventName}</span>
+                                            {eventLogic.quiz_answer && (
+                                                <span className="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-[9px] font-bold">saves: {eventLogic.quiz_answer}</span>
+                                            )}
+                                        </div>
+
+                                        {/* Default route */}
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-[10px] text-gray-500 font-bold w-16">Route to</span>
+                                            <select
+                                                className="flex-1 text-xs bg-white border border-gray-200 rounded px-2 py-1"
+                                                value={eventLogic.route?.to || ''}
+                                                onChange={(e) => {
+                                                    const newRouting = { ...config.event_routing };
+                                                    if (!newRouting[eventName]) newRouting[eventName] = {};
+                                                    newRouting[eventName] = { ...newRouting[eventName], route: { ...(newRouting[eventName].route || {}), to: e.target.value } };
+                                                    updateEvents({ event_routing: newRouting });
+                                                }}
+                                            >
+                                                <option value="">-- No Route --</option>
+                                                {availablePaths.map(p => (
+                                                    <option key={p.path} value={p.path}>{p.path} - {p.name}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+
+                                        {/* Conditional routes */}
+                                        {eventLogic.route?.conditions?.length > 0 && (
+                                            <div className="bg-purple-50 rounded-lg p-2 space-y-1.5">
+                                                <span className="text-[9px] font-bold text-purple-600 uppercase flex items-center gap-1">
+                                                    <GitBranch size={10} /> Conditional Forks
+                                                </span>
+                                                {eventLogic.route.conditions.map((cond: any, idx: number) => {
+                                                    const targetPage = availablePaths.find(p => p.path === cond.target);
+                                                    return (
+                                                        <div key={idx} className="flex items-center gap-1.5 text-[10px] bg-white rounded p-1.5 border border-purple-100">
+                                                            <span className="text-purple-500 font-bold">IF</span>
+                                                            <span className="font-mono bg-gray-100 px-1 rounded">{cond.field}</span>
+                                                            <span className="text-purple-400">{cond.operator}</span>
+                                                            <span className="font-mono bg-gray-100 px-1 rounded">{cond.value}</span>
+                                                            <ArrowRight size={10} className="text-purple-500" />
+                                                            <span className="font-bold text-purple-700">{targetPage ? `${targetPage.path} - ${targetPage.name}` : cond.target || '?'}</span>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                        )}
+
+                                        {/* Broadcasts summary */}
+                                        {eventLogic.broadcast && Object.keys(eventLogic.broadcast).length > 0 && (
+                                            <div className="flex gap-1 flex-wrap">
+                                                {Object.entries(eventLogic.broadcast).map(([target, cfg]: [string, any]) => (
+                                                    <span key={target} className="text-[8px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded font-bold uppercase">
+                                                        {target}: {(cfg as any).event_name || (cfg as any).goal_id}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        );
+                    })()}
                 </section>
             </div>
         )}

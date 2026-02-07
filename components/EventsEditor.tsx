@@ -108,6 +108,27 @@ const EVENT_TEMPLATES = [
             }
         })
     },
+    {
+        label: 'Personalized Fork (Age/Type)',
+        icon: <Filter size={12} />,
+        create: (suffix: string) => ({
+            [`${suffix}_selected`]: {
+                route: {
+                    to: '',
+                    conditions: [
+                        { field: suffix, operator: 'eq', value: 'option_1', target: '' },
+                        { field: suffix, operator: 'eq', value: 'option_2', target: '' },
+                        { field: suffix, operator: 'eq', value: 'option_3', target: '' },
+                    ]
+                },
+                quiz_answer: suffix,
+                broadcast: {
+                    db: { event_name: `${suffix}_selected` },
+                    facebook: { event_name: `QuizFork_${suffix}` }
+                }
+            }
+        })
+    },
 ];
 
 export const EventsEditor: React.FC = () => {
