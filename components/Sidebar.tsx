@@ -229,66 +229,22 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange }) =
            </div>
       </div>
 
-      <div className="p-3">
+      {/* Search + page count */}
+      <div className="px-3 pt-2 pb-1">
           <div className="relative">
               <Search size={14} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
               <input
                 type="text"
                 placeholder="Search steps..."
-                className="w-full bg-gray-800 border-none rounded-lg py-2 pl-9 pr-3 text-sm text-gray-300 placeholder-gray-500 focus:ring-1 focus:ring-[#f51721]"
+                className="w-full bg-gray-800 border-none rounded-lg py-2 pl-9 pr-14 text-sm text-gray-300 placeholder-gray-500 focus:ring-1 focus:ring-[#f51721]"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
+              <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[10px] text-gray-500 font-mono">{filteredPages.length} steps</span>
           </div>
       </div>
 
-      {/* Config Stats Dashboard */}
-      <div className="px-3 pb-2">
-          <button
-              type="button"
-              onClick={() => setShowStats(!showStats)}
-              className="w-full flex items-center gap-2 text-[11px] font-bold text-gray-400 hover:text-white transition-colors py-1"
-          >
-              <BarChart3 size={12} />
-              <span>Config Stats</span>
-              <span className="ml-auto">{showStats ? <ChevronUp size={10} /> : <ChevronDown size={10} />}</span>
-          </button>
-          {showStats && (() => {
-              const pageKeys = Object.keys(config.pages).filter(k => k !== '__template_preview__');
-              const pageCount = pageKeys.length;
-              const templateCount = Object.keys(config.templates).length;
-              const eventCount = Object.keys(config.event_routing || {}).length;
-              const routeCount = Object.values(config.event_routing || {}).filter((e: any) => e?.route?.to).length;
-              const hasABTest = !!config.split_test?.experiment_id;
-              const variationCount = config.split_test?.variations?.length || 0;
-              return (
-                  <div className="mt-1 bg-gray-800/50 rounded-lg p-2 text-[10px] text-gray-300 space-y-1 border border-gray-700/50">
-                      <div className="flex items-center gap-1.5">
-                          <span className="text-gray-500">&#9500;</span>
-                          <span>{pageCount} pages</span>
-                          <span className="text-gray-600">&bull;</span>
-                          <span>{templateCount} templates</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                          <span className="text-gray-500">&#9500;</span>
-                          <span>{eventCount} events</span>
-                          <span className="text-gray-600">&bull;</span>
-                          <span>{routeCount} routes</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                          <span className="text-gray-500">&#9500;</span>
-                          <span>Brand: {config.brand} v{config.version}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                          <span className="text-gray-500">&#9492;</span>
-                          <span>Split Test: {hasABTest ? <span className="text-green-400">Active ({variationCount} variations)</span> : <span className="text-gray-500">None</span>}</span>
-                      </div>
-                  </div>
-              );
-          })()}
-      </div>
-
-      {/* Quiz Psychology Phase Distribution Bar */}
+      {/* Quiz Phase Distribution Bar — compact */}
       {(() => {
         const allPages = Object.entries(config.pages).filter(([k]) => k !== '__template_preview__');
         const totalPages = allPages.length;
@@ -304,12 +260,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange }) =
           { name: 'Visualization', letter: 'V', color: '#22c55e', count: vizCount },
         ].filter(ph => ph.count > 0);
         return (
-          <div className="px-3 pb-2">
-            <div className="flex h-5 rounded-md overflow-hidden gap-px">
+          <div className="px-3 pb-1">
+            <div className="flex h-4 rounded-md overflow-hidden gap-px">
               {phases.map(ph => (
                 <div
                   key={ph.letter}
-                  className="flex items-center justify-center text-[9px] font-bold text-white"
+                  className="flex items-center justify-center text-[8px] font-bold text-white"
                   style={{ backgroundColor: ph.color, flex: ph.count }}
                   title={`${ph.name} Phase: ${ph.count} page${ph.count !== 1 ? 's' : ''}`}
                 >
@@ -321,7 +277,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange }) =
         );
       })()}
 
-      <div className="flex-1 overflow-y-auto px-2 space-y-1 custom-scrollbar pb-4">
+      {/* === PAGE LIST — this is the main scrollable area === */}
+      <div className="flex-1 overflow-y-auto px-2 space-y-0.5 custom-scrollbar min-h-0">
         {filteredPages.map(([key, page]) => (
           <div
             key={key}
@@ -330,33 +287,33 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange }) =
             onDragOver={(e) => handleDragOver(e, key)}
             onDrop={handleDrop}
             onClick={() => { setActivePageId(key); onViewChange('editor'); }}
-            className={`w-full px-3 py-2.5 rounded-lg text-sm transition-all flex items-center gap-2 group relative cursor-pointer ${
+            className={`w-full px-2 py-1.5 rounded-lg text-[13px] transition-all flex items-center gap-1.5 group relative cursor-pointer ${
               activePageId === key && currentView === 'editor'
                 ? 'bg-gray-800 text-white font-medium border-l-2 border-[#f51721]'
                 : 'text-gray-400 hover:bg-gray-800/50 hover:text-white'
             } ${draggedItem === key ? 'opacity-50' : ''}`}
           >
-            <div className={`cursor-move opacity-0 group-hover:opacity-100 transition-opacity ${searchTerm ? 'hidden' : ''}`}>
-                <GripVertical size={12} className="text-gray-600" />
+            <div className={`cursor-move opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ${searchTerm ? 'hidden' : ''}`}>
+                <GripVertical size={10} className="text-gray-600" />
             </div>
 
-            <span className={`font-mono text-[10px] w-5 h-5 flex items-center justify-center rounded flex-shrink-0 ${activePageId === key ? 'bg-gray-700 text-gray-300' : 'bg-gray-800 text-gray-600'}`}>{page?.path || '?'}</span>
+            <span className={`font-mono text-[9px] w-4 h-4 flex items-center justify-center rounded flex-shrink-0 ${activePageId === key ? 'bg-gray-700 text-gray-300' : 'bg-gray-800 text-gray-600'}`}>{page?.path || '?'}</span>
             <span
               className="w-1.5 h-1.5 rounded-full flex-shrink-0"
               style={{ backgroundColor: getQuizPhase(page?.path || '').color }}
-              title={`${getQuizPhase(page?.path || '').name} Phase (${getQuizPhase(page?.path || '').letter})`}
+              title={`${getQuizPhase(page?.path || '').name} Phase`}
             />
             <span className="truncate flex-1 select-none">{page?.name || 'Untitled'}</span>
 
-            <div className="opacity-0 group-hover:opacity-100 flex gap-0.5 transition-opacity">
+            <div className="opacity-0 group-hover:opacity-100 flex gap-0.5 transition-opacity flex-shrink-0">
                 <button
                     type="button"
                     onMouseDown={(e) => e.stopPropagation()}
                     onClick={(e) => { e.stopPropagation(); duplicatePage(key); }}
-                    className="p-1 hover:bg-gray-700 rounded text-gray-400 hover:text-white transition-all"
+                    className="p-0.5 hover:bg-gray-700 rounded text-gray-400 hover:text-white transition-all"
                     title="Duplicate Page"
                 >
-                    <Copy size={12} />
+                    <Copy size={11} />
                 </button>
                  <button
                     type="button"
@@ -367,114 +324,137 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange }) =
                              deletePage(key);
                         }
                     }}
-                    className="p-1 hover:bg-red-900/50 rounded text-gray-400 hover:text-red-400 transition-all"
+                    className="p-0.5 hover:bg-red-900/50 rounded text-gray-400 hover:text-red-400 transition-all"
                     title="Delete Page"
                 >
-                    <Trash2 size={12} />
+                    <Trash2 size={11} />
                 </button>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="p-4 border-t border-gray-800 space-y-3 bg-[#1a1c23]">
-        <button
-            type="button"
-            onClick={handleAddPage}
-            className="w-full flex items-center justify-center gap-2 py-2 rounded-lg border border-dashed border-gray-600 text-gray-400 hover:border-gray-400 hover:text-white transition-all text-sm font-medium"
-        >
-            <Plus size={16} /> Add New Step
-        </button>
-
-        {/* Validation Panel */}
-        <div>
+      {/* === BOTTOM BAR — compact, fixed height === */}
+      <div className="border-t border-gray-800 bg-[#1a1c23] flex-shrink-0">
+        {/* Add + Validate row */}
+        <div className="px-3 pt-2 pb-1 flex gap-2">
+            <button
+                type="button"
+                onClick={handleAddPage}
+                className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg border border-dashed border-gray-600 text-gray-400 hover:border-gray-400 hover:text-white transition-all text-xs font-medium"
+            >
+                <Plus size={14} /> Add Step
+            </button>
             <button
                 type="button"
                 onClick={handleValidate}
-                className="w-full flex items-center justify-center gap-2 py-2 text-xs font-bold rounded-lg border border-gray-700 text-gray-300 hover:text-white hover:bg-gray-800 transition-colors"
+                className="flex items-center justify-center gap-1.5 py-1.5 px-3 text-xs font-bold rounded-lg border border-gray-700 text-gray-300 hover:text-white hover:bg-gray-800 transition-colors"
+                title="Validate Config"
             >
-                <ShieldCheck size={14} /> Validate Config
+                <ShieldCheck size={13} />
                 {validationResults.length > 0 && (
-                    <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${errorCount > 0 ? 'bg-red-500/20 text-red-400' : 'bg-green-500/20 text-green-400'}`}>
-                        {errorCount > 0 ? `${errorCount} err` : 'OK'}
+                    <span className={`px-1 py-0.5 rounded-full text-[9px] font-bold ${errorCount > 0 ? 'bg-red-500/20 text-red-400' : 'bg-green-500/20 text-green-400'}`}>
+                        {errorCount > 0 ? errorCount : '✓'}
                     </span>
                 )}
             </button>
+        </div>
 
-            {showValidation && validationResults.length > 0 && (
-                <div className="mt-2 max-h-32 overflow-y-auto space-y-1 bg-gray-900 rounded-lg p-2">
-                    <div className="flex justify-between items-center mb-1">
-                        <span className="text-[10px] font-bold text-gray-500 uppercase">
-                            {errorCount} errors, {warningCount} warnings
+        {/* Validation results (expandable) */}
+        {showValidation && validationResults.length > 0 && (
+            <div className="mx-3 mb-1 max-h-24 overflow-y-auto space-y-1 bg-gray-900 rounded-lg p-2">
+                <div className="flex justify-between items-center mb-1">
+                    <span className="text-[10px] font-bold text-gray-500 uppercase">
+                        {errorCount} errors, {warningCount} warnings
+                    </span>
+                    <button onClick={() => setShowValidation(false)} className="text-gray-600 hover:text-gray-400">
+                        <ChevronUp size={12} />
+                    </button>
+                </div>
+                {validationResults.map((r, i) => (
+                    <div key={i} className={`flex items-start gap-2 text-[10px] p-1 rounded ${r.type === 'error' ? 'bg-red-900/20 text-red-300' : 'bg-amber-900/20 text-amber-300'}`}>
+                        {r.type === 'error' ? <AlertCircle size={10} className="flex-shrink-0 mt-0.5" /> : <AlertTriangle size={10} className="flex-shrink-0 mt-0.5" />}
+                        <span>
+                            {r.pageId && <strong className="text-gray-400">[{config.pages[r.pageId]?.name || r.pageId}] </strong>}
+                            {r.message}
                         </span>
-                        <button onClick={() => setShowValidation(false)} className="text-gray-600 hover:text-gray-400">
-                            <ChevronUp size={12} />
-                        </button>
                     </div>
-                    {validationResults.map((r, i) => (
-                        <div key={i} className={`flex items-start gap-2 text-[10px] p-1.5 rounded ${r.type === 'error' ? 'bg-red-900/20 text-red-300' : 'bg-amber-900/20 text-amber-300'}`}>
-                            {r.type === 'error' ? <AlertCircle size={10} className="flex-shrink-0 mt-0.5" /> : <AlertTriangle size={10} className="flex-shrink-0 mt-0.5" />}
-                            <span>
-                                {r.pageId && <strong className="text-gray-400">[{config.pages[r.pageId]?.name || r.pageId}] </strong>}
-                                {r.message}
-                            </span>
-                        </div>
-                    ))}
-                </div>
-            )}
-
-            {showValidation && validationResults.length === 0 && (
-                <div className="mt-2 p-2 bg-green-900/20 rounded-lg flex items-center gap-2 text-green-400 text-[11px] font-bold">
-                    <ShieldCheck size={14} /> Config is valid! Ready to export.
-                </div>
-            )}
-        </div>
-
-        {/* Template Coverage */}
-        <div className="px-3 py-2">
-            <div className="text-[10px] font-bold text-gray-500 uppercase mb-1">Template Usage</div>
-            <div className="flex flex-wrap gap-1">
-                {Object.keys(config.templates)
-                    .filter(k => k !== 'header' && k !== 'footer')
-                    .map(templateKey => {
-                        const usageCount = (Object.values(config.pages) as PageConfig[]).filter(p => p.template === templateKey).length;
-                        return (
-                            <span
-                                key={templateKey}
-                                className={`text-[9px] px-1.5 py-0.5 rounded ${usageCount > 0 ? 'bg-green-900/30 text-green-400' : 'bg-red-900/30 text-red-400'}`}
-                                title={`${templateKey}: ${usageCount} pages`}
-                            >
-                                {templateKey.replace(/_template$/, '').replace(/_/g, ' ').slice(0, 15)}
-                                <span className="ml-1 font-bold">{usageCount}</span>
-                            </span>
-                        );
-                    })
-                }
+                ))}
             </div>
+        )}
+        {showValidation && validationResults.length === 0 && (
+            <div className="mx-3 mb-1 p-1.5 bg-green-900/20 rounded-lg flex items-center gap-2 text-green-400 text-[10px] font-bold">
+                <ShieldCheck size={12} /> Config valid!
+            </div>
+        )}
+
+        {/* Config Stats — collapsible inline */}
+        <div className="px-3 pb-1">
+            <button
+                type="button"
+                onClick={() => setShowStats(!showStats)}
+                className="w-full flex items-center gap-1.5 text-[10px] font-medium text-gray-500 hover:text-gray-300 transition-colors py-0.5"
+            >
+                <BarChart3 size={10} />
+                <span>Stats</span>
+                {(() => {
+                    const pageKeys = Object.keys(config.pages).filter(k => k !== '__template_preview__');
+                    return <span className="text-gray-600">{pageKeys.length}p · {Object.keys(config.templates).length}t · {Object.keys(config.event_routing || {}).length}e</span>;
+                })()}
+                <span className="ml-auto">{showStats ? <ChevronUp size={9} /> : <ChevronDown size={9} />}</span>
+            </button>
+            {showStats && (() => {
+                const pageKeys = Object.keys(config.pages).filter(k => k !== '__template_preview__');
+                const hasABTest = !!config.split_test?.experiment_id;
+                const variationCount = config.split_test?.variations?.length || 0;
+                return (
+                    <div className="mt-1 bg-gray-800/50 rounded-lg p-2 text-[9px] text-gray-400 space-y-0.5 border border-gray-700/50">
+                        <div>Brand: {config.brand} v{config.version} · A/B: {hasABTest ? <span className="text-green-400">{variationCount} var</span> : <span className="text-gray-600">off</span>}</div>
+                        <div className="flex flex-wrap gap-1 mt-1">
+                            {Object.keys(config.templates)
+                                .filter(k => k !== 'header' && k !== 'footer')
+                                .map(templateKey => {
+                                    const usageCount = (Object.values(config.pages) as PageConfig[]).filter(p => p.template === templateKey).length;
+                                    return (
+                                        <span
+                                            key={templateKey}
+                                            className={`text-[8px] px-1 py-0.5 rounded ${usageCount > 0 ? 'bg-green-900/30 text-green-400' : 'bg-red-900/30 text-red-400'}`}
+                                            title={`${templateKey}: ${usageCount} pages`}
+                                        >
+                                            {templateKey.replace(/_template$/, '').replace(/_/g, ' ').slice(0, 12)} {usageCount}
+                                        </span>
+                                    );
+                                })
+                            }
+                        </div>
+                    </div>
+                );
+            })()}
         </div>
 
-        <div className="w-full space-y-2">
+        {/* Download + actions */}
+        <div className="px-3 pb-3 space-y-1.5">
             <button
                 type="button"
                 onClick={downloadConfig}
-                className="w-full flex items-center justify-center gap-2 py-3 bg-[#f51721] text-white font-bold rounded-full hover:bg-red-700 transition-colors shadow-lg shadow-red-900/20"
+                className="w-full flex items-center justify-center gap-2 py-2.5 bg-[#f51721] text-white font-bold rounded-full hover:bg-red-700 transition-colors shadow-lg shadow-red-900/20 text-sm"
             >
-                <Download size={16} /> Download Config
+                <Download size={15} /> Download Config
             </button>
             <div className="flex gap-2">
                 <button
                     type="button"
                     onClick={() => copyToClipboard(config)}
-                    className="flex-1 flex items-center justify-center gap-1 py-2 text-xs text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-colors border border-gray-700"
+                    className="flex-1 flex items-center justify-center gap-1 py-1.5 text-[11px] text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-colors border border-gray-700"
                 >
                     Copy
                 </button>
                 <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="flex-1 flex items-center justify-center gap-1 py-2 text-xs text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-colors border border-gray-700"
+                    className="flex-1 flex items-center justify-center gap-1 py-1.5 text-[11px] text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-colors border border-gray-700"
                 >
-                    <Upload size={12} /> Import
+                    <Upload size={11} /> Import
                 </button>
                 <input
                     type="file"
