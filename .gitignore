@@ -23,6 +23,9 @@ npm-debug.log*
 
 # Claude Code
 .claude/
+!.claude/settings.json
+!.claude/hooks/
+!.claude/hooks/**
 
 # Playwright MCP artifacts
 .playwright-mcp/
