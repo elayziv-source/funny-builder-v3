@@ -1,0 +1,3705 @@
+{
+	"id": 1,
+	"name": "Go-Slim Weight Loss Funnel",
+	"funnel_id": 1,
+	"brand": "go-slim",
+	"version": 99082,
+	"templates": {
+		"header": {
+			"type": "Box",
+			"props": {
+				"fixed": true,
+				"gap": "sm"
+			},
+			"children": [
+				{
+					"component": "ImageBox",
+					"props": {
+						"src": "_logo_src",
+						"alt": "_logo_alt",
+						"width": "_logo_width"
+					}
+				},
+				{
+					"component": "PageProgressBar",
+					"props": {}
+				},
+				{
+					"component": "Divider",
+					"props": {}
+				}
+			]
+		},
+		"footer": {
+			"type": "Box",
+			"props": {},
+			"children": [
+				{
+					"component": "LinksBox",
+					"props": {
+						"children": "_footer_links"
+					}
+				}
+			]
+		},
+		"pick_hero_template": {
+			"component": "Page",
+			"children": [
+				{
+					"component": "Text",
+					"props": {
+						"text": "_title_text",
+						"font": "title",
+						"element": "h1"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "_sub_title_text",
+						"font": "sub_title"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "ItemPicker",
+					"props": {
+						"items": "_options",
+						"on_select": "_on_select",
+						"direction": "row"
+					}
+				}
+			]
+		},
+		"image_button_template": {
+			"type": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "Text",
+					"props": {
+						"text": "_title_text",
+						"font": "title",
+						"element": "h1"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "_sub_title_text",
+						"font": "sub_title"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "ImageBox",
+					"props": {
+						"src": "_image_src",
+						"alt": "_image_alt",
+						"width": "image_max"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "lg"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_button_text",
+						"on_click": "_on_button_click",
+						"width": "full",
+						"fixed": true
+					}
+				}
+			]
+		},
+		"image_content_button_template": {
+			"type": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "ImageBox",
+					"props": {
+						"src": "_image_src",
+						"alt": "_image_alt",
+						"width": "_image_width",
+						"max_width": "_image_max_width",
+						"padding": "md"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "_title_text",
+						"font": "small_title",
+						"element": "h1",
+						"width": "image_max"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "sm"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "_sub_title_text",
+						"font": "sub_title",
+						"width": "image_max"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_button_text",
+						"on_click": "_on_button_click",
+						"width": "full",
+						"fixed": true
+					}
+				}
+			]
+		},
+		"image_rich_text_button_template": {
+			"type": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "ImageBox",
+					"props": {
+						"src": "_image_src",
+						"alt": "_image_alt",
+						"width": "_image_width",
+						"max_width": "_image_max_width",
+						"padding": "md"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "sm"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "_title_text",
+						"font": "small_title",
+						"element": "h1",
+						"width": "padded_page",
+						"text_align": "left"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "sm"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "_p1_text",
+						"font": "sub_title",
+						"width": "padded_page",
+						"text_align": "left"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"html": "_p2_html",
+						"font": "sub_title",
+						"width": "padded_page",
+						"text_align": "left"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"html": "_p3_html",
+						"color": "secondary_text",
+						"width": "padded_page",
+						"text_align": "left"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_button_text",
+						"on_click": "_on_button_click",
+						"width": "full",
+						"fixed": true
+					}
+				}
+			]
+		},
+		"plan_is_ready_template": {
+			"type": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "sm"
+					}
+				},
+				{
+					"component": "AnimatedChart"
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"html": "_html",
+						"font": "small_title",
+						"element": "h1",
+						"width": "full"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "xl"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_button_text",
+						"after_icon": "_button_icon",
+						"on_click": "_on_button_click",
+						"width": "full",
+						"fixed": true
+					}
+				}
+			]
+		},
+		"pick_multi_items_template": {
+			"component": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "Text",
+					"props": {
+						"text": "_title_text",
+						"font": "small_title",
+						"element": "h1"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "_sub_title_text",
+						"font": "sub_title"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "ItemPicker",
+					"props": {
+						"mode": "multi",
+						"item_flavor": "card",
+						"items": "_options",
+						"on_select": "_on_select",
+						"answer_key": "_answer_key",
+						"object_fit": "_object_fit"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "xl"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_button_text",
+						"on_click": "_on_button_click",
+						"width": "full",
+						"fixed": true,
+						"disabled": "_button_disabled",
+						"answer_key": "_answer_key"
+					}
+				}
+			]
+		},
+		"pick_minimal_multi_items_template": {
+			"component": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "Text",
+					"props": {
+						"text": "_title_text",
+						"font": "small_title",
+						"element": "h1"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "_sub_title_text",
+						"font": "sub_title"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "ItemPicker",
+					"props": {
+						"mode": "multi",
+						"item_flavor": "minimal",
+						"items": "_options",
+						"on_select": "_on_select",
+						"answer_key": "_answer_key",
+						"object_fit": "_object_fit"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_button_text",
+						"on_click": "_on_button_click",
+						"width": "full",
+						"fixed": true,
+						"disabled": "_button_disabled",
+						"answer_key": "_answer_key"
+					}
+				}
+			]
+		},
+		"pick_single_item_template": {
+			"component": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "Text",
+					"props": {
+						"text": "_title_text",
+						"font": "small_title",
+						"element": "h1"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "_sub_title_text",
+						"font": "sub_title",
+						"width": "image_max"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "ItemPicker",
+					"props": {
+						"mode": "single",
+						"item_flavor": "card",
+						"items": "_options",
+						"on_select": "_on_select",
+						"answer_key": "_answer_key",
+						"object_fit": "_object_fit"
+					}
+				}
+			]
+		},
+		"focus_area_template": {
+			"component": "Page",
+			"children": [
+				{
+					"component": "Text",
+					"props": {
+						"text": "_title_text",
+						"font": "small_title",
+						"element": "h1"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "sm"
+					}
+				},
+				{
+					"component": "FocusAreas",
+					"props": {
+						"canvas": "_canvas",
+						"areas": "_areas",
+						"answer_key": "_answer_key",
+						"on_select": "_on_select"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "sm"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_button_text",
+						"on_click": "_on_button_click",
+						"fixed": true,
+						"width": "full",
+						"disabled": "_button_disabled",
+						"answer_key": "_answer_key"
+					}
+				}
+			]
+		},
+		"pick_cloud_items_template": {
+			"component": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "Text",
+					"props": {
+						"text": "_title_text",
+						"font": "small_title",
+						"element": "h1"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "lg"
+					}
+				},
+				{
+					"component": "ItemPicker",
+					"props": {
+						"mode": "multi",
+						"direction": "row",
+						"item_flavor": "cloud",
+						"items": "_options",
+						"on_select": "_on_select",
+						"answer_key": "_answer_key"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "xl"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_button_text",
+						"on_click": "_on_button_click",
+						"width": "full",
+						"fixed": true,
+						"disabled": "_button_disabled",
+						"answer_key": "_answer_key"
+					}
+				}
+			]
+		},
+		"height_input_template": {
+			"component": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "Text",
+					"props": {
+						"text": "_title_text",
+						"font": "small_title",
+						"element": "h1"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "UnitToggle",
+					"props": {
+						"items": "_unit_options",
+						"answer_key": "_unit_answer_key",
+						"on_toggle": "_on_unit_toggle"
+					}
+				},
+				{
+					"component": "LengthInput",
+					"props": {
+						"answer_key": "_height_answer_key",
+						"unit_answer_key": "_unit_answer_key",
+						"on_input": "_on_height_input",
+						"invalid": {
+							"condition": "not_between",
+							"condition_values": "_height_invalid_condition_values",
+							"message": "_height_invalid_msg"
+						}
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "sm"
+					}
+				},
+				{
+					"component": "NotificationCard",
+					"props": {
+						"role": "info",
+						"icon": "_notification_icon",
+						"title_text": "_notification_title_text",
+						"body_text": "_notification_body_text"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "sm"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_button_text",
+						"on_click": "_on_button_click",
+						"answer_key": "_height_answer_key",
+						"disabled": {
+							"condition": "not_between",
+							"condition_values": "_height_invalid_condition_values"
+						},
+						"width": "full"
+					}
+				}
+			]
+		},
+		"weight_input_template": {
+			"component": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "Text",
+					"props": {
+						"text": "_title_text",
+						"font": "small_title",
+						"element": "h1"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "UnitToggle",
+					"props": {
+						"items": "_unit_options",
+						"answer_key": "_unit_answer_key",
+						"on_toggle": "_on_unit_toggle"
+					}
+				},
+				{
+					"component": "WeightInput",
+					"props": {
+						"answer_key": "_weight_answer_key",
+						"unit_answer_key": "_unit_answer_key",
+						"on_input": "_on_weight_input",
+						"invalid": {
+							"condition": "not_between",
+							"condition_values": "_weight_invalid_condition_values",
+							"message": "_weight_invalid_msg"
+						}
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "sm"
+					}
+				},
+				{
+					"component": "BmiNotification",
+					"props": {
+						"height_answer_key": "_bmi_notification_height_answer_key",
+						"weight_answer_key": "_bmi_notification_weight_answer_key",
+						"normal": "_bmi_notification_normal",
+						"underweight": "_bmi_notification_underweight",
+						"overweight": "_bmi_notification_overweight",
+						"obese": "_bmi_notification_obese"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "sm"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_button_text",
+						"on_click": "_on_button_click",
+						"answer_key": "_weight_answer_key",
+						"disabled": {
+							"condition": "not_between",
+							"condition_values": [
+								40,
+								250
+							]
+						},
+						"width": "full"
+					}
+				}
+			]
+		},
+		"perfect_weight_input_template": {
+			"component": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "Text",
+					"props": {
+						"text": "_title_text",
+						"font": "small_title",
+						"element": "h1"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "UnitToggle",
+					"props": {
+						"items": "_unit_options",
+						"answer_key": "_unit_answer_key",
+						"on_toggle": "_on_unit_toggle"
+					}
+				},
+				{
+					"component": "WeightInput",
+					"props": {
+						"answer_key": "_perfect_weight_answer_key",
+						"unit_answer_key": "_unit_answer_key",
+						"on_input": "_on_weight_input",
+						"invalid": {
+							"condition": "not_between",
+							"condition_values": "_weight_invalid_condition_values",
+							"message": "_weight_invalid_msg"
+						}
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "sm"
+					}
+				},
+				{
+					"component": "GoalNotification",
+					"props": {
+						"user_weight_answer_key": "_user_weight_answer_key",
+						"perfect_weight_answer_key": "_perfect_weight_answer_key",
+						"realistic": "_goal_notification_realistic",
+						"benefits": "_goal_notification_benefits",
+						"challenging": "_goal_notification_challenging"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "sm"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_button_text",
+						"on_click": "_on_button_click",
+						"answer_key": "_perfect_weight_answer_key",
+						"disabled": {
+							"condition": "not_between",
+							"condition_values": [
+								40,
+								250
+							]
+						},
+						"width": "full"
+					}
+				}
+			]
+		},
+		"age_input_template": {
+			"component": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "Text",
+					"props": {
+						"text": "_title_text",
+						"font": "small_title",
+						"element": "h1"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "NumericInput",
+					"props": {
+						"answer_key": "_age_answer_key",
+						"on_input": "_on_age_input",
+						"invalid": {
+							"condition": "not_between",
+							"condition_values": "_age_invalid_condition_values",
+							"message": "_age_invalid_msg"
+						}
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "NotificationCard",
+					"props": {
+						"role": "info",
+						"icon": "_notification_icon",
+						"title_text": "_notification_title_text",
+						"body_text": "_notification_body_text"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "sm"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_button_text",
+						"on_click": "_on_button_click",
+						"answer_key": "_age_answer_key",
+						"disabled": {
+							"condition": "not_between",
+							"condition_values": "_age_invalid_condition_values"
+						},
+						"width": "full"
+					}
+				}
+			]
+		},
+		"bmi_report_template": {
+			"component": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "BmiChart",
+					"props": {
+						"current_weight_key": "_current_weight_key",
+						"ideal_weight_key": "_ideal_weight_key",
+						"height_answer_key": "_height_answer_key"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "lg"
+					}
+				},
+				{
+					"component": "BmiReport",
+					"props": {
+						"current_body_type_key": "_currentbody_type_key",
+						"lifestyle_key": "_lifestyle_key",
+						"exercise_key": "_exercise_key",
+						"activity_level_key": "_activity_level_key",
+						"notification_title_text": "_notification_title_text",
+						"notification_body_text": "_notification_body_text"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_button_text",
+						"on_click": "_on_button_click",
+						"width": "full",
+						"fixed": true
+					}
+				}
+			]
+		},
+		"date_picker_template": {
+			"component": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "Text",
+					"props": {
+						"text": "_title_text",
+						"font": "small_title",
+						"element": "h1"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "sm"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "_sub_title_text",
+						"font": "sub_title"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "lg"
+					}
+				},
+				{
+					"component": "DatePicker",
+					"props": {
+						"date_key": "_date_key",
+						"placeholder": "_placeholder",
+						"width": "full",
+						"answer_key": "_answer_key"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "xxl"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_primary_button_text",
+						"on_click": "_on_primary_button_click",
+						"width": "full"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"role": "secondery",
+						"text": "_secondary_button_text",
+						"on_click": "_on_secondary_button_click",
+						"width": "full"
+					}
+				}
+			]
+		},
+		"chart_template": {
+			"component": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "Text",
+					"props": {
+						"html": "_html_title",
+						"font": "small_title",
+						"element": "h1"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "lg"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"html": "_html",
+						"font": "sub_title",
+						"width": "full"
+					}
+				},
+				{
+					"component": "WeightLossChart",
+					"props": {
+						"current_weight_key": "_current_weight_key",
+						"ideal_weight_key": "_ideal_weight_key"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_button_text",
+						"on_click": "_on_button_click",
+						"width": "full",
+						"fixed": true
+					}
+				}
+			]
+		},
+		"email_input_template": {
+			"component": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "Text",
+					"props": {
+						"html": "_title_html",
+						"font": "small_title",
+						"width": "full"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "sm"
+					}
+				},
+				{
+					"component": "TextInput",
+					"props": {
+						"answer_key": "_email_answer_key",
+						"on_input": "_on_email_input",
+						"invalid": {
+							"condition": "not_valid_email",
+							"message": "_email_invalid_msg"
+						},
+						"placeholder": "_input_placeholder",
+						"flavor": "email"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "_banner_text",
+						"font": "banner",
+						"width": "full",
+						"background": "success",
+						"padding": "md"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"html": "_html",
+						"font": "secondary_text",
+						"width": "full",
+						"color": "secondary_text"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "lg"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_button_text",
+						"on_click": "_on_button_click",
+						"answer_key": "_email_answer_key",
+						"disabled": {
+							"condition": "not_regex",
+							"condition_value": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+						},
+						"width": "full"
+					}
+				}
+			]
+		},
+		"consent_template": {
+			"component": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "Text",
+					"props": {
+						"html": "_html",
+						"font": "title"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "xl"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"text": "_primary_button_text",
+						"width": "full",
+						"on_click": "_on_primary_button_click"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "lg"
+					}
+				},
+				{
+					"component": "Button",
+					"props": {
+						"role": "secondery",
+						"text": "_secondary_button_text",
+						"width": "full",
+						"on_click": "_on_secondary_button_click"
+					}
+				}
+			]
+		},
+		"countdown_template": {
+			"component": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "Countdown",
+					"props": {
+						"countdown_total_seconds": "_countdown_total_seconds",
+						"countdown_text": "_countdown_text"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "1rem"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"html": "_title_text",
+						"font": "small_title",
+						"margin": "0"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"html": "_sub_title_text",
+						"font": "sub_title",
+						"margin": "0 0 35px"
+					}
+				},
+				{
+					"component": "Carousel",
+					"props": {
+						"carousel_slides": "_carousel_slides"
+					}
+				}
+			]
+		},
+		"hero_landing_template": {
+			"component": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "ImageBox",
+					"props": {
+						"src": "_hero_image_src",
+						"alt": "_hero_image_alt",
+						"width": "_image_width",
+						"max_width": "_image_max_width",
+						"padding": "md"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"html": "_stars_html",
+						"font": "body",
+						"text_align": "center"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "_headline_text",
+						"font": "title",
+						"element": "h1"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "_subheadline_text",
+						"font": "sub_title"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "xs"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"html": "_benefits_html",
+						"font": "sub_title",
+						"text_align": "left",
+						"width": "image_max"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "Box",
+					"props": {
+						"direction": "column",
+						"gap": "sm",
+						"width": "full"
+					},
+					"children": [
+						{
+							"component": "Button",
+							"props": {
+								"text": "_women_button_text",
+								"on_click": "_on_women_click",
+								"width": "full",
+								"background_color": "_women_button_color"
+							}
+						},
+						{
+							"component": "Button",
+							"props": {
+								"text": "_men_button_text",
+								"on_click": "_on_men_click",
+								"width": "full",
+								"background_color": "_men_button_color"
+							}
+						}
+					]
+				},
+				{
+					"component": "ImageBox",
+					"props": {
+						"src": "_logos_image_src",
+						"alt": "Featured in press",
+						"width": "_image_width",
+						"max_width": "_image_max_width",
+						"padding": "md"
+					}
+				}
+			]
+		},
+		"checkout_template": {
+			"component": "Page",
+			"props": {
+				"width": "narrow_page"
+			},
+			"children": [
+				{
+					"component": "CheckoutHeader",
+					"props": {
+						"button_text": "GET MY PLAN",
+						"on_click": "scroll_to_cta",
+						"discount_text": "discount reserved for:",
+						"font": "card_title"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "xl"
+					}
+				},
+				{
+					"component": "BeforeAndAfter",
+					"props": {
+						"decorative_arrows_image": "https://vtdc.s3.us-east-1.amazonaws.com/uploads/go-slim/before-after-arrows.svg",
+						"body_type_images": {
+							"youngest": {
+								"regular": "https://d1pgvtqzzemrmx.cloudfront.net/uploads/go-slim/youngest-average.png",
+								"flabby": "https://d1pgvtqzzemrmx.cloudfront.net/uploads/go-slim/youngest-average.png",
+								"extra": "https://d1pgvtqzzemrmx.cloudfront.net/uploads/go-slim/youngest-full.png",
+								"target": "https://d1pgvtqzzemrmx.cloudfront.net/uploads/go-slim/youngest-target.png"
+							},
+							"middle": {
+								"regular": "https://d1pgvtqzzemrmx.cloudfront.net/uploads/go-slim/middle-average.png",
+								"flabby": "https://d1pgvtqzzemrmx.cloudfront.net/uploads/go-slim/middle-average.png",
+								"extra": "https://d1pgvtqzzemrmx.cloudfront.net/uploads/go-slim/middle-full.png",
+								"target": "https://d1pgvtqzzemrmx.cloudfront.net/uploads/go-slim/middle-target.png"
+							},
+							"oldest": {
+								"regular": "https://d1pgvtqzzemrmx.cloudfront.net/uploads/go-slim/oldest-average.png",
+								"flabby": "https://d1pgvtqzzemrmx.cloudfront.net/uploads/go-slim/oldest-average.png",
+								"extra": "https://d1pgvtqzzemrmx.cloudfront.net/uploads/go-slim/oldest-full.png",
+								"target": "https://d1pgvtqzzemrmx.cloudfront.net/uploads/go-slim/oldest-target.png"
+							}
+						},
+						"current_body_type_key": "current_body_type",
+						"fitness_level_key": "fitness_level",
+						"target_weight_key": "perfect_weight",
+						"before_and_after_disclaimer": "This is not a guarantee or promise of results.",
+						"before_and_after_fitness_level_text": "Fitness level",
+						"before_and_after_body_fat_text": "Body Fat",
+						"before_and_after_now_text": "Now",
+						"before_and_after_your_goal_text": "Your Goal",
+						"target_body_fat": "14-20%",
+						"light_background_color": "light_background",
+						"dark_background_color": "dark_background"
+					}
+				},
+				{
+					"component": "Gap",
+					"props": {
+						"gap": "md"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "Your Walking Plan is Ready",
+						"font": "small_title"
+					}
+				},
+				{
+					"component": "PlanGoals",
+					"props": {
+						"target_weight_label": "Target Weight",
+						"target_weight_key": "perfect_weight",
+						"starting_level_label": "Starting Level",
+						"starting_level_key": "fitness_level"
+					}
+				},
+				{
+					"component": "MiniTimer",
+					"props": {
+						"text": "This offer ends in"
+					}
+				},
+				{
+					"component": "CheckoutSection",
+					"props": {
+						"button_text": "GET MY PLAN"
+					}
+				},
+				{
+					"component": "TopRated",
+					"props": {
+						"button_text": "GET MY PLAN",
+						"on_click": "scroll_to_cta",
+						"top_rated_stars": "https://vtdc.s3.us-east-1.amazonaws.com/uploads/go-slim/four-stars-tp.png",
+						"top_rated_text": "Based on 5,930 reviews",
+						"top_rated_heading": "Join Thousands<br />Walking Off Weight",
+						"top_rated_image": "https://vtdc.s3.us-east-1.amazonaws.com/uploads/go-slim/top-rated.png"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "Based on your quiz results, we’ve created a custom plan just for YOU—available here only.",
+						"font": "label",
+						"color": "dark_grey",
+						"text_align": "left"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "You're getting more than just a walking routine:",
+						"font": "label",
+						"color": "dark_grey",
+						"text_align": "left"
+					}
+				},
+				{
+					"component": "CheckListItem",
+					"props": {
+						"text": "A personalized, walking plan tailored to your fitness level and goals"
+					}
+				},
+				{
+					"component": "CheckListItem",
+					"props": {
+						"text": "Access to exclusive 10-minute home workout videos"
+					}
+				},
+				{
+					"component": "CheckListItem",
+					"props": {
+						"text": "A simple, sustainable meal and nutrition plan to support real results"
+					}
+				},
+				{
+					"component": "CheckListItem",
+					"props": {
+						"text": "Expert-backed, easy-to-follow guidance—all in one place"
+					}
+				},
+				{
+					"component": "CheckListItem",
+					"props": {
+						"text": "Backed by a 60-day money-back guarantee"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "This is your step-by-step roadmap to move more, feel better, and build healthy habits—no confusion, no extremes.",
+						"font": "testimonial",
+						"color": "dark_grey",
+						"text_align": "left"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "Choose your plan below and get instant access—you’re ready. Let’s take the first step.",
+						"font": "testimonial",
+						"color": "dark_grey",
+						"text_align": "left"
+					}
+				},
+				{
+					"component": "Text",
+					"props": {
+						"text": "And if you’re not happy with it for any reason, just contact us—we’ll give you your money back, no strings attached.",
+						"font": "testimonial",
+						"color": "dark_grey",
+						"text_align": "left"
+					}
+				},
+				{
+					"component": "Testimonials",
+					"props": {
+						"title_text": "Hear success stories from our users",
+						"items": [
+							{
+								"stars_rating_img_url": "https://vtdc.s3.us-east-1.amazonaws.com/uploads/go-slim/five-stars-tp.png",
+								"author": "MonicaH",
+								"quote": "I started with just a few minutes a day and it’s already made a huge difference in my energy and mood."
+							},
+							{
+								"stars_rating_img_url": "https://vtdc.s3.us-east-1.amazonaws.com/uploads/go-slim/five-stars-tp.png",
+								"author": "JasonF87",
+								"quote": "I’ve lost 6 pounds without ever stepping foot in a gym. GoSlim keeps me motivated without feeling overwhelming."
+							},
+							{
+								"stars_rating_img_url": "https://vtdc.s3.us-east-1.amazonaws.com/uploads/go-slim/five-stars-tp.png",
+								"author": "AnderB",
+								"quote": "What I love most is how personalized it feels. It’s like having a coach in my pocket, cheering me on."
+							}
+               
+						]
+					}
+				},
+				{
+					"component": "MoneyBack",
+					"props": {
+						"image": "https://vtdc.s3.us-east-1.amazonaws.com/uploads/go-slim/money-back-60.png",
+						"heading": "100% Money-Back<br> Guarantee",
+						"text": "We believe our plan will work for you—and that you’ll see visible results in 4 weeks! If you don't, we’ll return your money within 60 days of your first purchase—no questions asked. That’s why Go-Slim offers a 100% money-back guarantee. There’s no risk, only the opportunity to achieve your goals!",
+						"on_click": "scroll_to_cta",
+						"button_text": "BEGIN MY JOURNEY"
+  					}
+				}
+			]
+		}
+	},
+	"layout": {
+		"header": {
+			"template": "header",
+			"template_data": {
+				"_logo_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/large-icon.avif",
+				"_logo_alt": "Go-Slim Logo",
+				"_logo_width": "logo"
+			}
+		},
+		"footer": {
+			"template": "footer",
+			"template_data": {
+				"_footer_links": [
+					{
+						"href": "https://product.go-slim.co/privacy-policy1746620637117",
+						"text": "Privacy Policy"
+					},
+					{
+						"href": "http://product.go-slim.co/terms-and-conditionsgwkygq6l",
+						"text": "Terms & Conditions"
+					},
+					{
+						"href": "https://product.go-slim.co/contact-us1746620654142",
+						"text": "Contact Us"
+					},
+					{
+						"href": "https://product.go-slim.co/our-story1746620628008",
+						"text": "About Us"
+					}
+				]
+			}
+		}
+	},
+	"pages": {
+		"landing": {
+			"name": "Hero Landing",
+			"path": "1",
+			"template": "hero_landing_template",
+			"template_data": {
+				"_hero_image_src": "https://funny-media-assets.s3.us-east-1.amazonaws.com/go-slim/hero_image_p1_v2.jpg",
+				"_hero_image_alt": "Woman doing indoor walking",
+				"_stars_html": "⭐⭐⭐⭐⭐ Trusted by 3 million people",
+				"_headline_text": "Worried About Losing Your Independence After 55?",
+				"_subheadline_text": "Discover the 10-minute indoor walking plan that rebuilds balance, strength and independence",
+				"_benefits_html": "<span style=\"color: #4CAF50\">✓</span> Perfectly low impact (safe for bad knees)<br><span style=\"color: #4CAF50\">✓</span>  No gym, no equipment<br><span style=\"color: #4CAF50\">✓</span> Start wherever you are",
+				"_women_button_text": "WOMEN START HERE",
+				"_on_women_click": "gender_women_selected",
+				"_women_button_color": "primary",
+				"_men_button_text": "MEN START HERE",
+				"_on_men_click": "gender_men_selected",
+				"_men_button_color": "blue",
+				"_logos_image_src": "https://funny-media-assets.s3.us-east-1.amazonaws.com/go-slim/logos_hero.png"
+			},
+			"meta": {
+				"title": "Go-Slim - Indoor Walking for Independence",
+				"description": "The 10-minute indoor walking method helping women rebuild independence"
+			},
+			"header": true,
+			"footer": false
+		},
+		"age-selection": {
+			"name": "Age Group Selection",
+			"path": "2",
+			"template": "pick_hero_template",
+			"template_data": {
+				"_title_text": "Restorative Indoor Walking Method™ to Lose Weight",
+				"_sub_title_text": "According to your age",
+				"_options": [
+					{
+						"label": "25-34",
+						"value": "25-34",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/25-34.png"
+					},
+					{
+						"label": "35-44",
+						"value": "35-44",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/35-44.png"
+					},
+					{
+						"label": "45-54",
+						"value": "45-54",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/45-54.png"
+					},
+					{
+						"label": "55+",
+						"value": "55+",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/55%2B.png"
+					}
+				],
+				"_on_select": "age_selected"
+			},
+			"meta": {
+				"title": "Go-Slim - Walk Indoors to Lose Weight",
+				"description": "Choose your age group to get personalized weight loss recommendations"
+			},
+			"header": true,
+			"footer": true
+		},
+		"social-proof": {
+			"name": "3 Million Users Trust Us",
+			"path": "3",
+			"template": "image_button_template",
+			"template_data": {
+				"_title_text": "3 Million",
+				"_sub_title_text": "users have chosen to walk with us",
+				"_image_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p2-44up.png",
+				"_image_alt": "3 women walk dressed in sprot fit",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "social_proof_seen"
+			},
+			"meta": {
+				"title": "Go-Slim - 18 Million Users",
+				"description": "18 million users have chosen to walk with Go-Slim"
+			},
+			"header": true
+		},
+		"welcome-journey": {
+			"name": "Welcome to Your Walking Journey",
+			"path": "4",
+			"template": "image_content_button_template",
+			"template_data": {
+				"_image_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p3.jpg",
+				"_image_alt": "Woman in workout attire ready for walking journey",
+				"_title_text": "Welcome to your Restorative Indoor Walking journey!",
+				"_sub_title_text": "Welcome to Go-Slim! Discover the Restorative Indoor Walking Method™ - a gentle, mindful approach to walking that helps improve balance, reduce stress, and support steady weight loss progress at home. No equipment needed.",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "welcome_journey_seen"
+			},
+			"meta": {
+				"title": "Go-Slim - Welcome to your Restorative Indoor Walking journey",
+				"description": "Welcome to Go-Slim! Let's tailor your walking journey to meet your goals and needs."
+			},
+			"header": true
+		},
+		"goals-selection": {
+			"name": "What do you want to achieve?",
+			"path": "5",
+			"template": "pick_multi_items_template",
+			"template_data": {
+				"_title_text": "What do you want to achieve?",
+				"_sub_title_text": "(Trade confusion for direction. Clear goals focus your effort and multiply your results)",
+				"_object_fit": "contain",
+				"_options": [
+					{
+						"label": "Lose weight",
+						"value": "lose_weight",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p4-lower-age.png"
+					},
+					{
+						"label": "Get firm and toned",
+						"value": "get_firm_toned",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p4-lose-weight.png"
+					},
+					{
+						"label": "Relieve stress",
+						"value": "relieve_stress",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p4-relieve-stress.png"
+					},
+					{
+						"label": "Lower biological age",
+						"value": "lower_biological_age",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p4-get-toned.png"
+					},
+					{
+						"label": "Improve heart health",
+						"value": "improve_heart_health",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p4-heart-health.png"
+					}
+				],
+				"_on_select": "single_goal_selected",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "goals_selected",
+				"_button_disabled": {
+					"condition": "empty",
+					"value": "goals"
+				},
+				"_answer_key": "goals"
+			},
+			"meta": {
+				"title": "Go-Slim - What do you want to achieve?",
+				"description": "Select your fitness goals to get a personalized walking plan"
+			},
+			"header": true
+		},
+		"first-step-taken": {
+			"name": "The first step has been taken!",
+			"path": "6",
+			"template": "image_content_button_template",
+			"template_data": {
+				"_image_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p5v2.jpg",
+				"_image_alt": "Woman stretching by a pool with pink flowers in background",
+				"_title_text": "The first step has been taken!",
+				"_sub_title_text": "We have no equipment indoor workouts to help you achieve your goals in the most customized, exciting and easy way!",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "first_step_seen"
+			},
+			"meta": {
+				"title": "Go-Slim - The first step has been taken!",
+				"description": "We offer personalized workouts to help you achieve your fitness goals"
+			},
+			"header": true
+		},
+		"body-type-selection": {
+			"name": "Choose your current body type",
+			"path": "7",
+			"template": "pick_single_item_template",
+			"template_data": {
+				"_title_text": "Choose your current body type",
+				"_sub_title_text": "(Body type can suggest how much muscle or fat you have, and how easy or difficult it may be to lose weight)",
+				"_options": [
+					{
+						"label": "Regular",
+						"value": "regular",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/regular.png"
+					},
+					{
+						"label": "Flabby",
+						"value": "flabby",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/flabby.png"
+					},
+					{
+						"label": "Extra",
+						"value": "extra",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/extra.png"
+					}
+				],
+				"_on_select": "body_type_selected",
+				"_answer_key": "current_body_type"
+			},
+			"meta": {
+				"title": "Go-Slim - Choose your current body type",
+				"description": "Select your body type to get personalized workout recommendations"
+			},
+			"header": true
+		},
+		"target-body-type": {
+			"name": "Choose your target body type",
+			"path": "8",
+			"template": "pick_single_item_template",
+			"template_data": {
+				"_title_text": "Choose your target body type",
+				"_sub_title_text": "(Choose where you want to go and we'll tailor the path)",
+				"_options": [
+					{
+						"label": "A few pounds lighter",
+						"value": "few_pounds_lighter",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/few-pounds-lighter.png"
+					},
+					{
+						"label": "Fit",
+						"value": "fit",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/fit.png"
+					},
+					{
+						"label": "Flat belly",
+						"value": "flat_belly",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/flat-belly.png"
+					},
+					{
+						"label": "Shapely",
+						"value": "shapely",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/shapely.png"
+					}
+				],
+				"_on_select": "target_body_type_selected"
+			},
+			"meta": {
+				"title": "Go-Slim - Pick your target body type",
+				"description": "Choose your target body type to get personalized fitness goals"
+			},
+			"header": true
+		},
+		"focus-areas-selection": {
+			"name": "Choose your focus areas",
+			"path": "9",
+			"template": "focus_area_template",
+			"template_data": {
+				"_title_text": "Choose your target zones",
+				"_sub_title_text": "(Select focus areas where you want to see results first)",
+				"_canvas": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p8v2.png",
+				"_areas": [
+					{
+						"img_url": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/lower-back.png",
+						"label": "Lower Back",
+						"value": "lower_back"
+					},
+					{
+						"img_url": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/belly.png",
+						"label": "Belly",
+						"value": "belly"
+					},
+					{
+						"img_url": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/buttocks.png",
+						"label": "Buttocks",
+						"value": "buttocks"
+					},
+					{
+						"img_url": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/hips.png",
+						"label": "Hips",
+						"value": "hips"
+					},
+					{
+						"img_url": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/knees.png",
+						"label": "Knees",
+						"value": "knees"
+					},
+					{
+						"img_url": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/calves.png",
+						"label": "Calves",
+						"value": "calves"
+					},
+					{
+						"label": "Whole Body",
+						"value": "all"
+					}
+				],
+				"_on_select": "single_focus_area_selected",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "focus_areas_selected",
+				"_button_disabled": {
+					"condition": "empty",
+					"value": "focus_areas"
+				},
+				"_answer_key": "focus_areas"
+			},
+			"meta": {
+				"title": "Go-Slim - Choose your target zones",
+				"description": "Select the body areas you want to focus on during your fitness journey"
+			},
+			"header": true
+		},
+		"weight-satisfaction": {
+			"name": "When were you last happy with your weight?",
+			"path": "10",
+			"template": "pick_single_item_template",
+			"template_data": {
+				"_title_text": "When were you last happy with your weight?",
+				"_sub_title_text": "(The most attractive thing about a person is how they feel about themselves)",
+				"_options": [
+					{
+						"label": "Less than a year ago",
+						"value": "less_than_year",
+						"emoji": "🤔"
+					},
+					{
+						"label": "1 to 2 years ago",
+						"value": "1_to_2_years",
+						"emoji": "😅"
+					},
+					{
+						"label": "More than 3 years ago",
+						"value": "more_than_3_years",
+						"emoji": "🥲"
+					},
+					{
+						"label": "I'm happy with my weight",
+						"value": "happy_with_weight",
+						"emoji": "😍"
+					},
+					{
+						"label": "Never",
+						"value": "never",
+						"emoji": "❌"
+					}
+				],
+				"_on_select": "weight_satisfaction_selected",
+				"_answer_key": "weight_satisfaction"
+			},
+			"meta": {
+				"title": "Go-Slim - When were you last happy with your weight?",
+				"description": "Tell us about your weight satisfaction to personalize your journey"
+			},
+			"header": true
+		},
+		"youre-amazing": {
+			"name": "You're amazing!",
+			"path": "11",
+			"template": "image_content_button_template",
+			"template_data": {
+				"_image_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p10v2.jpg",
+				"_image_alt": "Woman stretching outdoors by a lake with green trees in background",
+				"_title_text": "You're amazing!",
+				"_sub_title_text": "We understand that many people worry about not being good enough. Don't worry, we've designed your program with a supportive, confidence-boosting approach that meets you right where you are!",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "youre_amazing_seen"
+			},
+			"meta": {
+				"title": "Go-Slim - You're amazing!",
+				"description": "Encouraging message to empower users on their fitness journey"
+			},
+			"header": true
+		},
+		"fitness-level": {
+			"name": "What is your current fitness level?",
+			"path": "12",
+			"template": "pick_single_item_template",
+			"template_data": {
+				"_title_text": "What is your current fitness level?",
+				"_sub_title_text": "(Let's set your starting point)",
+				"_show_descriptions": true,
+				"_object_fit": "contain",
+				"_options": [
+					{
+						"label": "Beginner",
+						"value": "beginner",
+						"description": "I want to start",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/beginner.png"
+					},
+					{
+						"label": "Intermediate",
+						"value": "intermediate",
+						"description": "I exercise sometimes",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/intermediate.png",
+						"highlighted": true
+					},
+					{
+						"label": "Advanced",
+						"value": "advanced",
+						"description": "I workout regularly",
+						"image": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/advanced.png"
+					}
+				],
+				"_on_select": "fitness_level_selected"
+			},
+			"meta": {
+				"title": "Go-Slim - What is your current fitness level?",
+				"description": "Select your fitness level to get appropriately challenging workouts"
+			},
+			"header": true
+		},
+		"walking-benefits": {
+			"name": "Discover the benefits of walking",
+			"path": "13",
+			"template": "image_content_button_template",
+			"template_data": {
+				"_image_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p12.jpg",
+				"_image_alt": "Woman jogging by a pool with pink flowers and green trees in background",
+				"_title_text": "Step into fitness: discover the benefits of restorative indoor walking",
+				"_sub_title_text": "The Restorative Indoor Walking Method™ is a gentle, mindful approach that helps improve balance, flexibility, and body awareness while reducing stress, a simple way to stay active at home in any weather.",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "walking_benefits_seen"
+			},
+			"meta": {
+				"title": "Go-Slim - Step into fitness: discover the benefits of the restorative indoor walking",
+				"description": "Learn about the advantages of walking for fitness and weight loss"
+			},
+			"header": true
+		},
+		"focus-preferences": {
+			"name": "What would you like to focus on?",
+			"path": "14",
+			"template": "pick_cloud_items_template",
+			"template_data": {
+				"_title_text": "Choose your focus",
+				"_sub_title_text": "Select all that apply",
+				"_options": [
+					{
+						"label": "Fat burn",
+						"value": "fat_burn"
+					},
+					{
+						"label": "Better shape",
+						"value": "better_shape"
+					},
+					{
+						"label": "Energy boost",
+						"value": "energy_boost"
+					},
+					{
+						"label": "Improved physique",
+						"value": "improved_physique"
+					},
+					{
+						"label": "Better relaxation",
+						"value": "better_relaxation"
+					},
+					{
+						"label": "Heart health",
+						"value": "improved_heart_health"
+					},
+					{
+						"label": "Better sleep",
+						"value": "better_sleep"
+					},
+					{
+						"label": "Increased life expectancy",
+						"value": "increased_life_expectancy"
+					},
+					{
+						"label": "Better mobility",
+						"value": "better_mobility"
+					},
+					{
+						"label": "Metabolism boost",
+						"value": "metabolism_boost"
+					},
+					{
+						"label": "Improved agility",
+						"value": "improved_agility"
+					},
+					{
+						"label": "Physical recovery",
+						"value": "physical_recovery"
+					}
+				],
+				"_button_text": "CONTINUE",
+				"_on_select": "single_focus_preference_selected",
+				"_on_button_click": "focus_preferences_selected",
+				"_answer_key": "focus_preferences",
+				"_button_disabled": {
+					"condition": "empty",
+					"value": "focus_preferences"
+				}
+			},
+			"meta": {
+				"title": "Go-Slim - What would you like to focus on?",
+				"description": "Select your fitness focus areas to personalize your walking program"
+			},
+			"header": true
+		},
+		"daily-walking-time": {
+			"name": "How much time do you spend walking on a typical day?",
+			"path": "15",
+			"template": "pick_single_item_template",
+			"template_data": {
+				"_title_text": "How much time do you spend walking on a typical day?",
+				"_sub_title_text": "(Indoor walking is one of the most powerful, and underrated tools for fat loss and longevity)",
+				"_options": [
+					{
+						"label": "Fewer than 20 minutes",
+						"value": "fewer_than_20_minutes",
+						"emoji": "👌"
+					},
+					{
+						"label": "20-60 minutes",
+						"value": "20_60_minutes",
+						"emoji": "👍"
+					},
+					{
+						"label": "1-2 hours",
+						"value": "1_2_hours",
+						"emoji": "💪"
+					},
+					{
+						"label": "More than 2 hours",
+						"value": "more_than_2_hours",
+						"emoji": "🏅"
+					}
+				],
+				"_on_select": "daily_walking_time_selected"
+			},
+			"meta": {
+				"title": "Go-Slim - How much time do you spend walking on a typical day?",
+				"description": "Tell us about your current walking habits to personalize your program"
+			},
+			"header": true
+		},
+		"walking-frequency": {
+			"name": "How often do you go for walks?",
+			"path": "16",
+			"template": "pick_single_item_template",
+			"template_data": {
+				"_title_text": "How often do you go for walks?",
+				"_sub_title_text": "(You need a solution that fits your lifestyle)",
+				"_options": [
+					{
+						"label": "Almost every day",
+						"value": "almost_every_day",
+						"emoji": "😎"
+					},
+					{
+						"label": "3-4 times per week",
+						"value": "3_4_times_per_week",
+						"emoji": "💪"
+					},
+					{
+						"label": "1-2 times per week",
+						"value": "1_2_times_per_week",
+						"emoji": "🙂"
+					},
+					{
+						"label": "Usually about once a month",
+						"value": "once_a_month",
+						"emoji": "👍"
+					}
+				],
+				"_on_select": "walking_frequency_selected"
+			},
+			"meta": {
+				"title": "Go-Slim - How often do you go for walks?",
+				"description": "Tell us about your walking frequency to create the right program intensity"
+			},
+			"header": true
+		},
+		"daily-routine": {
+			"name": "How Would You Describe Your Daily Routine?",
+			"path": "17",
+			"template": "pick_single_item_template",
+			"template_data": {
+				"_title_text": "How would you describe your work schedule?",
+				"_sub_title_text": "(You'd be surprised to see how far little changes can go)",
+				"_options": [
+					{
+						"label": "I work 9 to 5",
+						"value": "work_9_to_5",
+						"emoji": "🏙️"
+					},
+					{
+						"label": "Night shifts",
+						"value": "night_shifts",
+						"emoji": "🌃"
+					},
+					{
+						"label": "Flexible schedule",
+						"value": "flexible_schedule",
+						"emoji": "🌇"
+					},
+					{
+						"label": "I'm retired",
+						"value": "retired",
+						"emoji": "🏞"
+					}
+				],
+				"_on_select": "daily_routine_selected"
+			},
+			"meta": {
+				"title": "Go-Slim - How Would You Describe Your Daily Routine?",
+				"description": "Tell us about your daily schedule to create a workout plan that fits your lifestyle"
+			},
+			"header": true
+		},
+		"10000-steps-myth": {
+			"name": "The myth of 10,000 steps",
+			"path": "18",
+			"template": "image_rich_text_button_template",
+			"template_data": {
+				"_image_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p18.jpg",
+				"_image_alt": "Illustration representing gentle indoor walking for mobility and independence",
+				"_title_text": "Our Restorative Indoor Walking Method supports pain-free movement",
+				"_p1_text": "Studies show that gentle, consistent walking, done at a comfortable pace indoors, can significantly reduce joint discomfort, improve balance, and increase daily energy. Our restorative approach prioritizes what your body needs: safe, sustainable movement that actually feels good.",
+				"_p3_html": "Source: <i>JAMA Network Open</i> - \"Evaluation of Light Physical Activity Measured by Accelerometry and Mobility Disability During a 6-Year Follow-up in Older Women\" | February 2021",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "restorative_indoor_walking_supports_mobility_seen",
+				"_image_width": "two_thirds"
+			},
+			"meta": {
+				"title": "Go-Slim - Restorative Indoor Walking supports mobility",
+				"description": "Learn why personalized, realistic goals are more effective than the 10,000 steps myth"
+			},
+			"header": true
+		},
+		"goal-achievement-pace": {
+			"name": "At What Pace Do You Prefer to Reach Your Goal?",
+			"path": "19",
+			"template": "pick_single_item_template",
+			"template_data": {
+				"_title_text": "What pace would you like to achieve your goal at?",
+				"_sub_title_text": "(The right pace for you always works best)",
+				"_options": [
+					{
+						"label": "Slow and steady",
+						"value": "gradual_steady",
+						"emoji": "🚶‍♀️"
+					},
+					{
+						"label": "Moderate",
+						"value": "moderate_pace",
+						"emoji": "🏃‍♀️"
+					},
+					{
+						"label": "Fast",
+						"value": "as_fast_as_possible",
+						"emoji": "⚡"
+					},
+					{
+						"label": "Mixed",
+						"value": "mix_all_speeds",
+						"emoji": "👟"
+					},
+					{
+						"label": "I want Go-Slim to decide",
+						"value": "go_slim_decide",
+						"emoji": "✅"
+					}
+				],
+				"_on_select": "goal_achievement_pace_selected"
+			},
+			"meta": {
+				"title": "Go-Slim - At What Pace Do You Prefer to Reach Your Goal?",
+				"description": "Tell us your preferred pace to create a program that matches your expectations"
+			},
+			"header": true
+		},
+		"plan-tailored": {
+			"name": "Great! Your plan has been adjusted to your level!",
+			"path": "20",
+			"template": "image_content_button_template",
+			"template_data": {
+				"_image_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p20.jpg",
+				"_image_alt": "Woman stretching outdoors by a lake with green trees, showing fitness achievement",
+				"_title_text": "Great! Your plan has been adjusted to your level!",
+				"_sub_title_text": "Moreover, we will adapt your personal plan to changes in your body and activity level throughout your journey!",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "plan_tailored_continue"
+			},
+			"meta": {
+				"title": "Go-Slim - Great! Your plan is now tailored to your level",
+				"description": "Your personalized walking plan is ready, matched to your activity level and goals"
+			},
+			"header": true
+		},
+		"sleep-on-average": {
+			"name": "Honestly, How Much Sleep Do You Get on Average?",
+			"path": "21",
+			"template": "pick_single_item_template",
+			"template_data": {
+				"_title_text": "Truthfully, what is an average night like for you?",
+				"_sub_title_text": "(The right walking regimen can strengthen your biological clock and improve your sleep)",
+				"_options": [
+					{
+						"label": "Not enough rest (under 5 hours)",
+						"value": "under_5_hours",
+						"emoji": "😴"
+					},
+					{
+						"label": "Some sleep (5–6 hours) ",
+						"value": "5_6_hours",
+						"emoji": "💤"
+					},
+					{
+						"label": "A good rest (7–8 hours)",
+						"value": "7_8_hours",
+						"emoji": "🐻"
+					},
+					{
+						"label": "Sleep champ (8+ hours)",
+						"value": "8_plus_hours",
+						"emoji": "🦸‍♀️"
+					}
+				],
+				"_on_select": "sleep_on_average_selected"
+			},
+			"meta": {
+				"title": "Go-Slim - Honestly, How Much Sleep Do You Get on Average?",
+				"description": "Tell us about your sleep on average to create the right program intensity"
+			},
+			"header": true
+		},
+		"how-do-you-sleep": {
+			"name": "How do you sleep?",
+			"path": "22",
+			"template": "pick_multi_items_template",
+			"template_data": {
+				"_title_text": "How do you sleep?",
+				"_sub_title_text": "(Quality sleep doesn't just mean rest, it's hormone balance, fat burning, and cognitive clarity)",
+				"_options": [
+					{
+						"label": "Difficulty falling asleep",
+						"value": "difficulty_falling_asleep",
+						"emoji": "🙃"
+					},
+					{
+						"label": "Waking up tired",
+						"value": "waking_up_tired",
+						"emoji": "😫"
+					},
+					{
+						"label": "Waking up during the night",
+						"value": "waking_up_during_the_night",
+						"emoji": "😵‍💫"
+					},
+					{
+						"label": "Insomnia",
+						"value": "insomnia",
+						"emoji": "🥱"
+					},
+					{
+						"label": "Hot flashes / Night sweats",
+						"value": "hot_flashes_night_sweats",
+						"emoji": "😓"
+					},
+					{
+						"label": "Irregular sleep schedule",
+						"value": "irregular_sleep_schedule",
+						"emoji": "🗓️"
+					},
+					{
+						"label": "No, I sleep well",
+						"value": "no_i_sleep_well",
+						"emoji": "😴"
+					}
+				],
+				"_on_select": "how_do_you_sleep_selected_single",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "how_do_you_sleep_selected",
+				"_button_disabled": {
+					"condition": "empty",
+					"value": "sleep_issue"
+				},
+				"_answer_key": "sleep_issue"
+			},
+			"meta": {
+				"title": "Go-Slim - How do you sleep?",
+				"description": "Tell us about your sleep to create the right program intensity"
+			},
+			"header": true
+		},
+		"sleep-is-key": {
+			"name": "Sleep is key for weight loss",
+			"path": "23",
+			"template": "image_rich_text_button_template",
+			"template_data": {
+				"_image_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/feedback-sleep-is-key.png",
+				"_image_alt": "Woman jogging by a pool with pink flowers and green trees in background",
+				"_title_text": "Sleep is key for weight loss",
+				"_p1_text": "Restful nights support a healthy metabolism, regulate appetite, carb cravings and boost energy.",
+				"_p2_html": "<p>By supporting hormonal health and better digestion, walking can help promote <b>better sleep</b>",
+				"_p3_html": "Information sourced from <i>ScienceDaily</i>",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "sleep_is_key_continue"
+			},
+			"meta": {
+				"title": "Go-Slim - Sleep is key for weight loss",
+				"description": "Don't overlook the foundation of weight loss. Quality sleep is one of the most underestimated factor in shedding pounds"
+			},
+			"header": true
+		},
+		"daily-water-intake": {
+			"name": "How much water do you drink in a day?",
+			"path": "24",
+			"template": "pick_single_item_template",
+			"template_data": {
+				"_title_text": "How much water do you drink in a day?",
+				"_sub_title_text": "(Studies show: people who drink water before walking, walk longer and report less fatigue)",
+				"_options": [
+					{
+						"label": "I only drink tea or coffee ",
+						"value": "only_tea_or_coffee",
+						"emoji": "☕"
+					},
+					{
+						"label": "Fewer than 2 glasses of water ",
+						"value": "fewer_than_2_glasses_of_water",
+						"emoji": "✌🏼"
+					},
+					{
+						"label": "2-6 glasses of water ",
+						"value": "2_6_glasses_of_water",
+						"emoji": "👌🏼"
+					},
+					{
+						"label": "More than 6 glasses of water ",
+						"value": "more_than_6_glasses_of_water",
+						"emoji": "🙌🏼"
+					}
+				],
+				"_on_select": "how_much_water_do_you_drink_selected"
+			},
+			"meta": {
+				"title": "Go-Slim - How much water do you drink?",
+				"description": "Tell us about your water consumption to personalize your program"
+			},
+			"header": true
+		},
+		"feeling-between-meals": {
+			"name": "How do you feel between meals?",
+			"path": "25",
+			"template": "pick_single_item_template",
+			"template_data": {
+				"_title_text": "How do you feel between meals?",
+				"_sub_title_text": "(Walking at the right times can help keep your energy steady all day)",
+				"_options": [
+					{
+						"label": "I get sleepy when I'm hungry",
+						"value": "get_sleepy_when_hungry",
+						"emoji": "😴"
+					},
+					{
+						"label": "I'm tired after I eat",
+						"value": "tired_after_eating",
+						"emoji": "🥱"
+					},
+					{
+						"label": "I feel good ",
+						"value": "feel_good",
+						"emoji": "😉"
+					},
+					{
+						"label": "I am always feeling energized ",
+						"value": "always_feeling_energized",
+						"emoji": "😜"
+					}
+				],
+				"_on_select": "feeling_between_meals_selected"
+			},
+			"meta": {
+				"title": "Go-Slim - How do you feel between meals?",
+				"description": "Tell us about your feelings between meals to better understand your eating habits"
+			},
+			"header": true
+		},
+		"roadblock-habits": {
+			"name": "Do Any of These Habits Get in Your Way?",
+			"path": "26",
+			"template": "pick_multi_items_template",
+			"template_data": {
+				"_title_text": "Do any of these vices hold you back?",
+				"_sub_title_text": "(No shame - everyone has something)",
+				"_options": [
+					{
+						"label": "I have a sweet tooth",
+						"value": "i_have_a_sweet_tooth",
+						"emoji": "🍰"
+					},
+					{
+						"label": "I drink too much soda",
+						"value": "i_drink_too_much_soda",
+						"emoji": "🥤"
+					},
+					{
+						"label": "I like a midnight snack",
+						"value": "i_like_a_midnight_snack",
+						"emoji": "🍔"
+					},
+					{
+						"label": "I drink alcohol",
+						"value": "i_drink_alcohol",
+						"emoji": "🍷"
+					},
+					{
+						"label": "I'm a smoker ",
+						"value": "i_m_a_smoker",
+						"emoji": "🚬"
+					},
+					{
+						"label": "I don't sleep enough",
+						"value": "i_don_t_sleep_enough",
+						"emoji": "🌛"
+					},
+					{
+						"label": "None of the above",
+						"value": "none_of_the_above",
+						"emoji": "❌"
+					}
+				],
+				"_on_select": "roadblock_habits_selected_single",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "roadblock_habits_selected",
+				"_button_disabled": {
+					"condition": "empty",
+					"value": "roadblock_habits"
+				},
+				"_answer_key": "roadblock_habits"
+			},
+			"meta": {
+				"title": "Go-Slim - Do Any of These Habits Get in Your Way?",
+				"description": "Tell us about your habits to create the right program for you"
+			},
+			"header": true
+		},
+		"causal-life-changes": {
+			"name": "Have Any of These Life Changes Contributed to Weight Gain?",
+			"path": "27",
+			"template": "pick_multi_items_template",
+			"template_data": {
+				"_title_text": "Select any life events that could have led to weight gain",
+				"_sub_title_text": "(We’re here to get you back on track)",
+				"_options": [
+					{
+						"label": "Marriage or a relationship",
+						"value": "marriage_or_relationship",
+						"emoji": "👩‍❤️‍👨"
+					},
+					{
+						"label": "Pregnancy",
+						"value": "pregnancy",
+						"emoji": "🤰"
+					},
+					{
+						"label": "Busy work or family life",
+						"value": "busy_work_or_family_life",
+						"emoji": "😮‍💨"
+					},
+					{
+						"label": "Stress and mental health ",
+						"value": "stress_and_mental_health",
+						"emoji": "🤯"
+					},
+					{
+						"label": "Medicine or hormonal problems",
+						"value": "medicine_or_hormonal_problems",
+						"emoji": "💊"
+					},
+					{
+						"label": "None of the above",
+						"value": "none_of_the_above",
+						"emoji": "❌"
+					}
+				],
+				"_on_select": "causal_life_changes_selected_single",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "causal_life_changes_selected",
+				"_button_disabled": {
+					"condition": "empty",
+					"value": "causal_life_changes"
+				},
+				"_answer_key": "causal_life_changes"
+			},
+			"meta": {
+				"title": "Go-Slim - Have Any of These Life Changes Contributed to Weight Gain?",
+				"description": "Tell us about your life changes to create the right program for you"
+			},
+			"header": true
+		},
+		"you-can-always-change": {
+			"name": "You can always change your habits for the better",
+			"path": "28",
+			"template": "image_content_button_template",
+			"template_data": {
+				"_image_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p29.jpg",
+				"_image_alt": "Illustration of water bottle, orange juice, and apple representing healthy lifestyle choices",
+				"_title_text": "You can always change your habits for the better",
+				"_sub_title_text": "Big life changes often affect a person’s weight. That's normal. We'll support you until you reach your goal.",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "you_can_always_change_seen"
+			},
+			"meta": {
+				"title": "Go-Slim - You can always change your habits for the better",
+				"description": "Big life changes often affect a person’s weight. That's normal. We'll support you until you reach your goal."
+			},
+			"header": true
+		},
+		"user-height": {
+			"name": "How tall are you?",
+			"path": "29",
+			"template": "height_input_template",
+			"template_data": {
+				"_title_text": "How tall are you?",
+				"_unit_options": [
+					{
+						"label": "in",
+						"value": "imperial"
+					},
+					{
+						"label": "cm",
+						"value": "metric"
+					}
+				],
+				"_unit_answer_key": "measurement_system",
+				"_on_unit_toggle": "measurement_system_toggle",
+				"_height_answer_key": "user_height",
+				"_height_invalid_condition_values": [
+					40,
+					250
+				],
+				"_height_invalid_msg": "Please insert a value between 40 and 250 cm",
+				"_on_height_input": "user_height_input",
+				"_notification_icon": "☝️",
+				"_notification_title_text": "Calculating your body mass index",
+				"_notification_body_text": "BMI is widely used as a risk factor for the development of or the prevalence of several health issues",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "user_height_selected"
+			},
+			"meta": {
+				"title": "Go-Slim - How tall are you?",
+				"description": "We'll use this to calculate your BMI and create a personalized plan."
+			},
+			"header": true
+		},
+		"user-current-weight": {
+			"name": "What is your current weight?",
+			"path": "30",
+			"template": "weight_input_template",
+			"template_data": {
+				"_title_text": "What is your current weight?",
+				"_unit_options": [
+					{
+						"label": "lb",
+						"value": "imperial"
+					},
+					{
+						"label": "kg",
+						"value": "metric"
+					}
+				],
+				"_unit_answer_key": "measurement_system",
+				"_on_unit_toggle": "measurement_system_toggle",
+				"_weight_answer_key": "user_weight",
+				"_weight_invalid_condition_values": [
+					30,
+					250
+				],
+				"_weight_invalid_msg": "Please insert a value between 80 and 550 lbs",
+				"_on_weight_input": "user_weight_input",
+				"_bmi_notification_height_answer_key": "user_height",
+				"_bmi_notification_weight_answer_key": "user_weight",
+				"_bmi_notification_normal": {
+					"icon": "👌",
+					"title": "Good starting BMI to get a fit body",
+					"text": "Research has shown that walking helps you boost your metabolism, lose weight, gain muscle strength, and improve heart health"
+				},
+				"_bmi_notification_underweight": {
+					"icon": "❗️",
+					"title": "which is considered underweight",
+					"text": "You should pay more attention to your weight. We will use your index to tailor a weight loss program"
+				},
+				"_bmi_notification_overweight": {
+					"icon": "❗️",
+					"title": "which is considered overweight",
+					"text": "You should try to focus on your weight. We will use your index to tailor a weight loss program"
+				},
+				"_bmi_notification_obese": {
+					"icon": "‼️",
+					"title": "which is considered obese",
+					"text": "You should try to focus on your weight. We will use your index to tailor the right weight loss program"
+				},
+				"_button_text": "CONTINUE",
+				"_on_button_click": "user_weight_selected"
+			},
+			"meta": {
+				"title": "Go-Slim - What is your current weight?",
+				"description": "We'll use this to calculate your BMI and create a personalized plan."
+			},
+			"header": true
+		},
+		"user-perfect-weight": {
+			"name": "What would you consider your perfect weight?",
+			"path": "31",
+			"template": "perfect_weight_input_template",
+			"template_data": {
+				"_title_text": "What would you consider your perfect weight?",
+				"_unit_options": [
+					{
+						"label": "lb",
+						"value": "imperial"
+					},
+					{
+						"label": "kg",
+						"value": "metric"
+					}
+				],
+				"_unit_answer_key": "measurement_system",
+				"_on_unit_toggle": "measurement_system_toggle",
+				"_user_weight_answer_key": "user_weight",
+				"_perfect_weight_answer_key": "perfect_weight",
+				"_weight_invalid_condition_values": [
+					30,
+					250
+				],
+				"_weight_invalid_msg": "Please insert a value between 80 and 550 lbs",
+				"_on_weight_input": "perfect_weight_input",
+				"_goal_notification_realistic": {
+					"icon": "👌",
+					"title": "Realistic Goal",
+					"text": "Lower your risk of chronic health problems, such as heart disease and type 2 diabetes. According to CDC recommendations, losing 4 kg per month is healthy and safe"
+				},
+				"_goal_notification_benefits": {
+					"icon": "💚",
+					"title": "Health Benefits",
+					"text": "As per a study by the University of Utah, even 5-minute workouts every day can help you keep fit and improve your sleep and energy levels"
+				},
+				"_goal_notification_challenging": {
+					"icon": "💪",
+					"title": "CHALLEGING GOAL",
+					"text": "In a new study by Mayo Clinic, overweight people who lose more than 20% of their body weight are almost 2½ times more likely to have good metabolic health as those who lose 5-10%"
+				},
+				"_button_text": "CONTINUE",
+				"_on_button_click": "perfect_weight_selected"
+			},
+			"meta": {
+				"title": "Go-Slim - What would you consider your perfect weight?",
+				"description": "We'll use this to calculate your BMI and create a personalized plan."
+			},
+			"header": true
+		},
+		"user-age": {
+			"name": "What is your age?",
+			"path": "32",
+			"template": "age_input_template",
+			"template_data": {
+				"_title_text": "What is your age?",
+				"_age_answer_key": "user_age",
+				"_on_age_input": "user_age_input",
+				"_notification_icon": "☝️",
+				"_notification_title_text": "We ask your age to create your personal plan",
+				"_notification_body_text": "Older people tend to have more body fat than younger people with the same BMI.",
+				"_age_invalid_condition_values": [
+					18,
+					85
+				],
+				"_age_invalid_msg": "The supported age range is from 18 to 85",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "user_age_selected"
+			},
+			"meta": {
+				"title": "Go-Slim - What is your age?",
+				"description": "Older people tend to have more body fat than younger people with the same BMI."
+			},
+			"header": true
+		},
+		"thank-you": {
+			"name": "Thank you!",
+			"path": "33",
+			"template": "image_content_button_template",
+			"template_data": {
+				"_image_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p33.jpg",
+				"_image_alt": "Woman in workout attire by a lake ready for walking journey",
+				"_title_text": "Great choices! We are almost done!",
+				"_sub_title_text": "Thank you for your remarkable honesty. We’re nearly finished with the setup of your personal Restorative Indoor Walking Method™. Just a little more patience, my friend!",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "thank_you_seen"
+			},
+			"meta": {
+				"title": "Go-Slim - Thank you!",
+				"description": "Thank you for your remarkable honesty. We’re almost finished!"
+			},
+			"header": true
+		},
+		"bmi": {
+			"name": "Your BMI report",
+			"path": "34",
+			"template": "bmi_report_template",
+			"template_data": {
+				"_weight_key": "user_weight",
+				"_height_key": "user_height",
+				"_measurment_unit_key": "measurment_unit",
+				"_lifestyle_key": "goal_achievement_pace",
+				"_activity_level_key": "fitness_level",
+				"_exercise_key": "walking_frequency",
+				"_body_type_key": "body_type_answer",
+				"_notification_type": "warning",
+				"_notification_title_text": "Did you know?",
+				"_notification_body_text": "Walking is one of the most effective ways to lose weight and improve overall health. It's low-impact, easy to start, and can be done anywhere!",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "bmi_report_seen"
+			},
+			"meta": {
+				"title": "Go-Slim - Your BMI report",
+				"description": "BMI is a measure of body fat based on height and weight."
+			},
+			"header": true
+		},
+		"cardiovascular-benefits": {
+			"name": "Walking can reduce the risk of cardiovascular disease by 33%",
+			"path": "35",
+			"template": "image_rich_text_button_template",
+			"template_data": {
+				"_image_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/feedback-walking-can-reduce.png",
+				"_image_alt": "Illustration of a hand with the okay sign",
+				"_title_text": "Restorative Indoor Walking supports heart health",
+				"_p1_text": "Studies find that older adults who moved regularly had a 40-50% lower risk of cardiovascular disease, including heart attack and stroke. Our restorative indoor walking method offers the benefits of traditional walking in a gentler, more accessible format.",
+				"_p3_html": "Source: Paluch et al., <i>Circulation</i> \" (American Heart Association journal) \" | , 2023",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "cardiovascular_benefits_seen",
+				"_image_width": "two_thirds",
+				"_image_max_width": "two_thirds"
+			},
+			"meta": {
+				"title": "Go-Slim - Walking can reduce the risk of cardiovascular disease by 33%",
+				"description": "A study in the Journal of Physical Activity and Health  revealed that regular walking can significantly reduce metabolic syndrome risks in older adults."
+			},
+			"header": true
+		},
+		"past-setbacks": {
+			"name": "Have you struggled with any of these setbacks in the past?",
+			"path": "36",
+			"template": "pick_minimal_multi_items_template",
+			"template_data": {
+				"_title_text": "Have you struggled with any of these setbacks in the past?",
+				"_sub_title_text": "(These are the most common reasons people fall of track, and they're completely normal)",
+				"_options": [
+					{
+						"label": "Lack of motivation",
+						"value": "lose_weight"
+					},
+					{
+						"label": "Time constraints",
+						"value": "time_constraints"
+					},
+					{
+						"label": "No clear plan",
+						"value": "no_clear_plan"
+					},
+					{
+						"label": "Lack of visible progress",
+						"value": "lack_of_visible_progress"
+					},
+					{
+						"label": "Workouts were too hard",
+						"value": "workouts_were_too_hard"
+					},
+					{
+						"label": "Poor coaching",
+						"value": "poor_coaching"
+					},
+					{
+						"label": "None of these",
+						"value": "none_of_these"
+					}
+				],
+				"_on_select": "past_setbacks_selected_single",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "past_setbacks_selected",
+				"_button_disabled": {
+					"condition": "empty",
+					"value": "past_setbacks"
+				},
+				"_answer_key": "past_setbacks"
+			},
+			"meta": {
+				"title": "Go-Slim - Have you struggled with any of these setbacks in the past?",
+				"description": "Share your struggles to create a plan that works for you"
+			},
+			"header": true
+		},
+		"thanks-for-sharing": {
+			"name": "Thanks for sharing!",
+			"path": "37",
+			"template": "image_content_button_template",
+			"template_data": {
+				"_image_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/feedback-thanks-for-sharing.png",
+				"_image_alt": "Emoji of the okay sign",
+				"_title_text": "Thanks for sharing!",
+				"_sub_title_text": "We’ve found that many people face the same issues. Go-Slim offers all the tools you need to maintain a consistent walking routine and make  progress toward your goals.",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "thanks_for_sharing_seen"
+			},
+			"meta": {
+				"title": "Go-Slim - Thanks for sharing!",
+				"description": "We’ve found that many people face the same issues. Go-Slim offers all the tools you need to maintain a consistent walking routine and make  progress toward your goals."
+			},
+			"header": true
+		},
+		"why-do-people-give-up": {
+			"name": "Why do people give up on exercise?",
+			"path": "38",
+			"template": "image_content_button_template",
+			"template_data": {
+				"_image_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p10.jpg",
+				"_title_text": "Why do people give up on exercise?",
+				"_sub_title_text": "The #1 reason is starting too big too quickly.\nWe're not promising quick results, but we're committed to supporting you on your journey to achieving your goals.",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "why_do_people_give_up_seen"
+			},
+			"meta": {
+				"title": "Go-Slim - Why do people give up on exercise?",
+				"description": "We’ve found that many people face the same issues. Go-Slim offers all the tools you need to maintain a consistent walking routine and make  progress toward your goals."
+			},
+			"header": true
+		},
+		"special-occasion": {
+			"name": "Is there a special occasion you want to lose weight for?",
+			"path": "39",
+			"template": "pick_single_item_template",
+			"template_data": {
+				"_title_text": "Is there a special occasion you want to lose weight for?",
+				"_sub_title_text": "(You're more likely to reach your goal if you have something important to aim for)",
+				"_options": [
+					{
+						"label": "Vacation",
+						"value": "vacation",
+						"emoji": "✈️"
+					},
+					{
+						"label": "Wedding",
+						"value": "wedding",
+						"emoji": "🥂"
+					},
+					{
+						"label": "Sporting event",
+						"value": "sporting_event",
+						"emoji": "🏆"
+					},
+					{
+						"label": "Beach trip",
+						"value": "beach_trip",
+						"emoji": "🏝️"
+					},
+					{
+						"label": "Reunion",
+						"value": "reunion",
+						"emoji": "🥳"
+					},
+					{
+						"label": "Family occasion",
+						"value": "family_occasion",
+						"emoji": "👨‍👩‍👦"
+					},
+					{
+						"label": "No",
+						"value": "no",
+						"emoji": "👀",
+						"event": "no_occasion"
+					}
+				],
+				"_on_select": "special_occasion_selected"
+			},
+			"meta": {
+				"title": "Go-Slim - Is there a special occasion you want to lose weight for?",
+				"description": "You're more likely to reach your goal if you have something important to aim for"
+			},
+			"header": true
+		},
+		"event-date": {
+			"name": "Creating your walking plan",
+			"path": "40",
+			"template": "date_picker_template",
+			"template_data": {
+				"_title_text": "When is your event?",
+				"_sub_title_text": "Once we know when your event is, we'll be able to build a plan to help you achieve your goal. Your data will not be shared with any third parties.",
+				"_html": "<span>Once we know when your event is, we'll be able to build a plan to help you achieve your goal. Your data will not be shared with any third party.</span>",
+				"_input_placeholder": "Click to select",
+				"_input_icon": "calendar",
+				"_input_label": "Please select a date",
+				"_answer_key": "event_date",
+				"_primary_button_text": "CONTINUE",
+				"_on_primary_button_click": "event_date_selected",
+				"_secondary_button_text": "Skip this question",
+				"_on_secondary_button_click": "event_date_skipped"
+			},
+			"meta": {
+				"title": "Go-Slim - When is your event?",
+				"description": "Once we know when your event is, we'll be able to build a plan to help you achieve your goal."
+			},
+			"header": true
+		},
+		"weight-loss-chart": {
+			"name": "The one and only plan you’ll ever need to get in shape",
+			"path": "41",
+			"template": "chart_template",
+			"template_data": {
+				"_html_title": "<span style='text-align: center; font-size: 28px; font-weight: 600; color: #0a0908; line-height: 1.35;'>The one and only plan you’ll ever need to get in shape</span>",
+				"_html": "<span style='text-align: center; font-size: 20px; font-weight: 600; color: #0a0908; line-height: 1.35;'>According to the information you have provided us, you’ll achieve your goal weight of</span>",
+				"_unit_key": "_unit_answer_key",
+				"_target_weight_key": "target_weight_answer",
+				"_target_date_key": "event_date_answer",
+				"_current_weight_key": "current_weight_answer",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "weight_loss_chart_seen"
+			},
+			"meta": {
+				"title": "Go-Slim - The one and only plan you’ll ever need to get in shape",
+				"description": "According to the information you have provided us, "
+			},
+			"header": true
+		},
+		"countdown": {
+			"name": "Creating your walking plan",
+			"path": "42",
+			"template": "countdown_template",
+			"template_data": {
+				"_countdown_total_seconds": 10,
+				"_countdown_text": "Creating your walking plan...",
+				"_title_text": "<span style='margin: 0; text-align: center; font-size: 35px; font-weight: bold; color: #FC544B;'>3 million</span>",
+				"_sub_title_text": "<span style='text-align: center; font-size: 16px; font-weight: 600; color: #424242;'>users have chosen us</span>",
+				"_carousel_slides": [
+					{
+						"stars_rating_img_url": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/review-stars.png",
+						"author": "Sarah, 42",
+						"quote": "I used to think I had to run marathons to lose weight, but Go-Slim completely changed my perspective. The walking plan was so easy to follow, and I actually looked forward to getting outside every day. I've lost 8 kilos, but even better, I feel more energized and confident than I have in years!"
+					},
+					{
+						"stars_rating_img_url": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/review-stars.png",
+						"author": "Lina, 36",
+						"quote": "As a busy mom, I never thought I'd have time for fitness. Go-Slim made it simple with short, daily walks that fit right into my schedule. I've dropped two dress sizes without feeling deprived or exhausted. It's been a total game-changer!"
+					},
+					{
+						"stars_rating_img_url": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/review-stars.png",
+						"author": "Claire, 58",
+						"quote": "Menopause made weight loss feel impossible, but Go-Slim gave me hope. The walking plan was gentle enough for my joints but still helped me shed stubborn weight. I feel lighter, happier, and healthier — and my doctor was impressed with my latest check-up!"
+					},
+					{
+						"stars_rating_img_url": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/review-stars.png",
+						"author": "David, 50",
+						"quote": "I wanted something realistic for my age and fitness level. Go-Slim was perfect — no crazy workouts, just walking. In three months, I've lost 6 kilos and my blood pressure has improved. I'm sticking with it because it doesn't feel like a chore."
+					}
+				]
+			},
+			"meta": {
+				"title": "Go-Slim - Hang on, we're creating your walking plan",
+				"description": "We're creating your personalized walking plan, matched to your activity level and goals"
+			},
+			"header": true
+		},
+		"user-email": {
+			"email_key": "user_email",
+			"name": "Enter your email to get your personal Indoor Walking Plan",
+			"path": "43",
+			"template": "email_input_template",
+			"template_data": {
+				"_title_html": "Enter your email to get your personal <span style='color: var(--color-primary)'>Restorative Indoor Walking Method™</span>",
+				"_email_answer_key": "user_email",
+				"_on_email_input": "user_email_input",
+				"_email_invalid_msg": "Please enter a valid email address",
+				"_input_placeholder": "Your Email",
+				"_banner_text": "⭐ 3 MILLION USERS HAVE CHOSEN US",
+				"_html": "<span style='font-size: 11px;'>🔒 We respect your privacy and handle your data strictly in line with our <u>Privacy Policy</u></span>",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "lead"
+			},
+			"meta": {
+				"title": "Go-Slim - Enter your email to get your personal Indoor Walking Plan",
+				"description": "We respect your privacy and handle your data strictly in line with our Privacy Policy"
+			},
+			"header": true
+		},
+		"user-consent": {
+			"name": "Do you want to receive emails with Indoor Walking tips and our product updates?",
+			"path": "44",
+			"template": "consent_template",
+			"template_data": {
+				"_html": "<span>Do you want to receive emails with  <span style='color: var(--color-primary)'>Restorative Indoor Walking Method™</span> tips and our product updates?</span>",
+				"_primary_button_text": "SURE, I'M IN",
+				"_on_primary_button_click": "user_consent_given",
+				"_secondary_button_text": "I DON'T WANT TO RECEIVE TIPS OR UPDATES",
+				"_on_secondary_button_click": "user_consent_rejected"
+			},
+			"meta": {
+				"title": "Go-Slim - Do you want to receive emails with Indoor Walking tips and our product updates?",
+				"description": "Do you want to receive emails with Indoor Walking tips and our product updates?"
+			},
+			"header": true
+		},
+		"plan-is-ready": {
+			"name": "Your 4-week Restorative Indoor Walking Plan is ready",
+			"path": "45",
+			"template": "plan_is_ready_template",
+			"template_data": {
+				"_html": "<span style='text-align: center; font-size: 26px; font-weight: 600; color: #0a0908; line-height: 1.35;'>Your 4-week Restorative Indoor Walking plan is ready!</span>",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "plan_is_ready_seen"
+			},
+			"meta": {
+				"title": "Go-Slim - Your 4-week Restorative Indoor Walking Plan is ready",
+				"description": "Your personalized walking plan is ready, matched to your activity level and goals"
+			},
+			"header": true
+		},
+		"your-restorative-indoor-walking-plan": {
+			"name": "Your Restorative Indoor Walking Plan",
+			"path": "46",
+			"template": "image_button_template",
+			"template_data": {
+				"_title_text": "Your Restorative Indoor Walking Plan",
+				"_sub_title_text": "Your personalized plan is built to help you walk, burn fat, and stay consistent - right at home, on your schedule.",
+				"_image_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p45v2.jpg",
+				"_image_alt": "Your Restorative Indoor Walking Plan",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "your_indoor_walking_plan"
+			},
+			"meta": {
+				"title": "Your Restorative Indoor Walking Plan",
+				"description": "Your personalized plan is built to help you walk, burn fat, and stay consistent - right at home, on your schedule."
+			},
+			"header": true
+		},
+		"why-go-slim-works-better": {
+			"name": "Why Go Slim Works Better",
+			"path": "47",
+			"template": "image_button_template",
+			"template_data": {
+				"_title_text": "Why Go Slim Works Better",
+				"_image_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/p46v2.jpg",
+				"_image_alt": "Why Go Slim Works Better",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "why_go_slim_works_better"
+			},
+			"meta": {
+				"title": "Why Go Slim Works Better",
+				"description": "Why Go Slim Works Better"
+			},
+			"header": true
+		},
+		"dont-just-take-our-word": {
+			"name": "Don't just take our word!",
+			"path": "48",
+			"template": "image_button_template",
+			"template_data": {
+				"_title_text": "Don't just take our word!",
+				"_sub_title_text": "Here is what other women, just like you, are saying about GoSlim!",
+				"_image_src": "https://d1kk7xfge5vfmh.cloudfront.net/go-slim/beforeandafterp47.gif",
+				"_image_alt": "Don't just take our word!",
+				"_button_text": "CONTINUE",
+				"_on_button_click": "dont_just_take_our_word"
+			},
+			"meta": {
+				"title": "Don't just take our word!",
+				"description": "Here is what other women, just like you, are saying about GoSlim!"
+			},
+			"header": true
+		},
+		"checkout": {
+			"name": "Checkout",
+			"path": "49",
+			"template": "checkout_template",
+			"template_data": {},
+			"header": false,
+			"footer": true
+		}
+	},
+	"theme": {
+		"colors": {
+			"primary": "#f51721",
+			"secondary": "#6c757d",
+			"blue": "#2196F3",
+			"background": "#f7f6f4",
+			"text": "#0A0908",
+			"secondary_text": "#bababb",
+			"success": "#afebc1",
+			"dark_grey": "#424242"
+		},
+		"fonts": {
+			"title": "900 1.8rem/2.5rem 'PT Sans'",
+			"small_title": "900 24px/32px 'PT Sans'",
+			"sub_title": "400 16px/24px 'PT Sans'",
+			"label": "600 16px/20px 'PT Sans'",
+			"body": "600 16px/20px 'PT Sans'",
+			"link": "600 16px/20px 'PT Sans'",
+			"button": "600 16px/20px 'PT Sans'",
+			"big_value": "900 36px/48px 'PT Sans'",
+			"error": "500 0.875rem 'PT Sans'",
+			"card_title": "700 12px/14px 'PT Sans'",
+			"card_body": "500 10px/16px 'PT Sans'",
+			"banner": "700 16px/24px 'PT Sans'",
+			"secondary_text": "400 11px/16px 'PT Sans'",
+			"testimonial": "600 14px/20px 'PT Sans'"
+		},
+		"spacing": {
+			"xs": "0.25rem",
+			"sm": "0.5rem",
+			"md": "1rem",
+			"lg": "2rem",
+			"xl": "4rem",
+			"xxl": "8rem"
+		},
+		"border_radius": {
+			"xs": "0.25rem",
+			"sm": "0.5rem",
+			"md": "1rem",
+			"lg": "2rem",
+			"xl": "4rem"
+		},
+		"width": {
+			"hero": "190px",
+			"logo": "108px",
+			"main_image": "40%",
+			"secondary_image": "60%",
+			"auto": "auto",
+			"full": "100%",
+			"image_max": "315px",
+			"narrow_page": "420px",
+			"padded_page": "350px",
+			"sm": "420px",
+			"one_half": "50%",
+			"one_third": "33.33%",
+			"two_thirds": "66.66%",
+			"header_height": "68px"
+		},
+		"border": {
+			"sm": "2px solid #eaeaeb",
+			"md": "3px solid #eaeaeb",
+			"lg": "6px solid #eaeaeb",
+			"selected_sm": "1px solid #f51721"
+		}
+	},
+	"broadcast_targets": {
+		"facebook": {
+			"pixel_id": "1215681120091698"
+		},
+		"ga4": {
+			"measurement_id": "G-QBPHLDF965"
+		},
+		"convert": {
+			"project_id": "farsh"
+		}
+	},
+	"event_routing": {
+		"session_started": {
+			"broadcast": {
+				"db": {
+					"event_name": "session_started"
+				},
+				"ga4": {
+					"event_name": "session_start"
+				}
+			}
+		},
+		"page_view": {
+			"broadcast": {
+				"facebook": {
+					"event_name": "page_view"
+				},
+				"db": {
+					"event_name": "page_view"
+				},
+				"ga4": {
+					"event_name": "quiz_page_view"
+				}
+			}
+		},
+		"gender_women_selected": {
+			"route": {
+				"to": "2"
+			},
+			"quiz_answer": "gender",
+			"broadcast": {
+				"facebook": {
+					"event_name": "QuizStep2"
+				},
+				"db": {
+					"event_name": "quiz_answer"
+				}
+			}
+		},
+		"gender_men_selected": {
+			"route": {
+				"to": "2"
+			},
+			"quiz_answer": "gender",
+			"broadcast": {
+				"facebook": {
+					"event_name": "QuizStep2"
+				},
+				"db": {
+					"event_name": "quiz_answer"
+				}
+			}
+		},
+		"age_selected": {
+			"route": {
+				"to": "3"
+			},
+			"quiz_answer": "age",
+			"broadcast": {
+				"db": {
+					"event_name": "age_selected"
+				},
+				"facebook": {
+					"event_name": "QuizStep3"
+				}
+			}
+		},
+		"social_proof_seen": {
+			"route": {
+				"to": "4"
+			},
+			"broadcast": {
+				"facebook": {
+					"event_name": "QuizStep4"
+				}
+			}
+		},
+		"welcome_journey_seen": {
+			"route": {
+				"to": "5"
+			},
+			"broadcast": {
+				"facebook": {
+					"event_name": "QuizStep5"
+				}
+			}
+		},
+		"single_goal_selected": {
+			"quiz_answer": "goals"
+		},
+		"goals_selected": {
+			"route": {
+				"to": "6"
+			}
+		},
+		"first_step_seen": {
+			"route": {
+				"to": "7"
+			}
+		},
+		"body_type_selected": {
+			"route": {
+				"to": "8"
+			},
+			"broadcast": {
+				"facebook": {
+					"event_name": "QuizStep8"
+				}
+			},
+			"quiz_answer": "current_body_type"
+		},
+		"target_body_type_selected": {
+			"route": {
+				"to": "9"
+			},
+			"quiz_answer": "target_body_type"
+		},
+		"single_focus_area_selected": {
+			"quiz_answer": "focus_areas"
+		},
+		"focus_areas_selected": {
+			"route": {
+				"to": "10"
+			},
+			"broadcast": {
+				"facebook": {
+					"event_name": "QuizStep10"
+				}
+			}
+		},
+		"weight_satisfaction_selected": {
+			"route": {
+				"to": "11"
+			},
+			"quiz_answer": "weight_satisfaction"
+		},
+		"youre_amazing_seen": {
+			"route": {
+				"to": "12"
+			}
+		},
+		"fitness_level_selected": {
+			"route": {
+				"to": "13"
+			},
+			"quiz_answer": "fitness_level"
+		},
+		"walking_benefits_seen": {
+			"route": {
+				"to": "14"
+			}
+		},
+		"single_focus_preference_selected": {
+			"quiz_answer": "focus_preferences"
+		},
+		"focus_preferences_selected": {
+			"route": {
+				"to": "15"
+			},
+			"quiz_answer": "daily_walking_time"
+		},
+		"daily_walking_time_selected": {
+			"route": {
+				"to": "16"
+			},
+			"quiz_answer": "daily_walking_time"
+		},
+		"walking_frequency_selected": {
+			"route": {
+				"to": "17"
+			},
+			"quiz_answer": "walking_frequency"
+		},
+		"daily_routine_selected": {
+			"route": {
+				"to": "18"
+			},
+			"quiz_answer": "daily_routine"
+		},
+		"restorative_indoor_walking_supports_mobility_seen": {
+			"route": {
+				"to": "19"
+			}
+		},
+		"goal_achievement_pace_selected": {
+			"route": {
+				"to": "20"
+			},
+			"broadcast": {
+				"facebook": {
+					"event_name": "QuizStep20"
+				}
+			},
+			"quiz_answer": "goal_achievement_pace"
+		},
+		"plan_tailored_continue": {
+			"route": {
+				"to": "21"
+			}
+		},
+		"sleep_on_average_selected": {
+			"route": {
+				"to": "22"
+			},
+			"quiz_answer": "sleep_on_average"
+		},
+		"how_do_you_sleep_selected_single": {
+			"quiz_answer": "sleep_issue"
+		},
+		"how_do_you_sleep_selected": {
+			"route": {
+				"to": "23"
+			}
+		},
+		"sleep_is_key_continue": {
+			"route": {
+				"to": "24"
+			}
+		},
+		"how_much_water_do_you_drink_selected": {
+			"route": {
+				"to": "25"
+			},
+			"quiz_answer": "how_much_water_do_you_drink"
+		},
+		"feeling_between_meals_selected": {
+			"route": {
+				"to": "26"
+			},
+			"quiz_answer": "feeling_between_meals"
+		},
+		"roadblock_habits_selected_single": {
+			"quiz_answer": "roadblock_habits"
+		},
+		"roadblock_habits_selected": {
+			"route": {
+				"to": "27"
+			}
+		},
+		"causal_life_changes_selected_single": {
+			"quiz_answer": "causal_life_changes"
+		},
+		"causal_life_changes_selected": {
+			"route": {
+				"to": "28"
+			}
+		},
+		"you_can_always_change_seen": {
+			"route": {
+				"to": "29"
+			}
+		},
+		"measurement_system_toggle": {
+			"quiz_answer": "measurement_system"
+		},
+		"user_height_input": {
+			"quiz_answer": "user_height"
+		},
+		"user_height_selected": {
+			"route": {
+				"to": "30"
+			}
+		},
+		"user_weight_input": {
+			"quiz_answer": "user_weight"
+		},
+		"user_weight_selected": {
+			"route": {
+				"to": "31"
+			}
+		},
+		"perfect_weight_input": {
+			"quiz_answer": "perfect_weight"
+		},
+		"perfect_weight_selected": {
+			"route": {
+				"to": "32"
+			}
+		},
+		"user_age_input": {
+			"quiz_answer": "user_age"
+		},
+		"user_age_selected": {
+			"route": {
+				"to": "33"
+			}
+		},
+		"thank_you_seen": {
+			"route": {
+				"to": "34"
+			}
+		},
+		"bmi_report_seen": {
+			"route": {
+				"to": "35"
+			}
+		},
+		"cardiovascular_benefits_seen": {
+			"route": {
+				"to": "36"
+			}
+		},
+		"past_setbacks_selected_single": {
+			"quiz_answer": "past_setbacks"
+		},
+		"past_setbacks_selected": {
+			"route": {
+				"to": "37"
+			}
+		},
+		"thanks_for_sharing_seen": {
+			"route": {
+				"to": "38"
+			}
+		},
+		"why_do_people_give_up_seen": {
+			"route": {
+				"to": "39"
+			}
+		},
+		"special_occasion_selected": {
+			"route": {
+				"to": "40"
+			},
+			"quiz_answer": "special_occasion"
+		},
+		"no_occasion": {
+			"route": {
+				"to": "41"
+			}
+		},
+		"event_date_selected": {
+			"route": {
+				"to": "41"
+			}
+		},
+		"event_date_skipped": {
+			"route": {
+				"to": "41"
+			}
+		},
+		"weight_loss_chart_seen": {
+			"route": {
+				"to": "42"
+			}
+		},
+		"countdown_end": {
+			"route": {
+				"to": "43"
+			},
+			"broadcast": {
+				"facebook": {
+					"event_name": "Q_finale"
+				}
+			}
+		},
+		"user_email_input": {
+			"quiz_answer": "user_email"
+		},
+		"lead": {
+			"route": {
+				"to": "44"
+			},
+			"broadcast": {
+				"db": {
+					"event_name": "lead"
+				},
+				"facebook": {
+					"event_name": "Lead"
+				}
+			}
+		},
+		"user_consent_given": {
+			"route": {
+				"to": "45"
+			},
+			"quiz_answer": "user_consent"
+		},
+		"user_consent_rejected": {
+			"route": {
+				"to": "45"
+			}
+		},
+		"plan_is_ready_seen": {
+			"route": {
+				"to": "46"
+			}
+		},
+		"your_indoor_walking_plan": {
+			"route": {
+				"to": "47"
+			}
+		},
+		"why_go_slim_works_better": {
+			"route": {
+				"to": "48"
+			}
+		},
+		"dont_just_take_our_word": {
+			"route": {
+				"to": "49"
+			},
+			"broadcast": {
+				"facebook": {
+					"event_name": "AddToCart"
+				}
+			}
+		},
+		"top_checkout_btn_click": {
+			"broadcast": {
+				"ga4": {
+					"event_name": "top_checkout_btn_click"
+				}
+			}
+		},
+		"middle_checkout_btn_click": {
+			"broadcast": {
+				"ga4": {
+					"event_name": "middle_checkout_btn_click"
+				}
+			}
+		},
+		"bottom_checkout_btn_click": {
+			"broadcast": {
+				"ga4": {
+					"event_name": "bottom_checkout_btn_click"
+				}
+			}
+		},
+		"scroll_to_cta": {
+			"scroll": {
+				"to": "cta"
+			}
+		},
+		"initial_checkout": {
+			"broadcast": {
+				"db": {
+					"event_name": "InitiateCheckout"
+				},
+				"facebook": {
+					"event_name": "InitiateCheckout"
+				},
+				"ga4": {
+					"event_name": "begin_checkout"
+				},
+				"convert": {
+					"goal_id": "1004112071"
+				}
+			},
+			"checkout": true
+		}
+	},
+	"checkout": {
+		"store_provider": "ds24",
+		"default_payment_method": "paypal",
+		"default_discount_id": "1004112071",
+		"default_product_id": "619466",
+		"product_type": "subscription",
+		"discount_timer": 600,
+		"discounts": [
+			{ 
+				"id": "1004112071",
+				"percentage": 61
+			}
+		],
+		"products": [
+			{
+				"id": "615356",
+				"weeks": 1,
+				"price": 17.76,
+				"currency": "USD",
+				"name": "1-WEEK TRIAL",
+				"description": "Feel better in 1 week",
+				"link": "https://www.checkout-ds24.com/product/615356/219772?first_paymethod=paypal",
+				"disclaimer": "By clicking on ”GET MY PLAN” I agree to pay $6.93. If I do not cancel before the end of the 1-week trail, it will convert to a regular 4-week subscription, and GO-SLIM will automatically charge me the regular price of $38.95 every 4 weeks until I cancel. I can cancel via the Contact Us link to avoid being charged for the next billing cycle."
+			},
+			{
+				"id": "619466",
+				"weeks": 4,
+				"price": 38.95,
+				"currency": "USD",
+				"name": "4-WEEK PLAN",
+				"description": "Get visible results in 4 weeks",
+				"link": "https://www.checkout-ds24.com/product/619466/219849?first_paymethod=paypal",
+				"promo": "MOST POPULAR",
+				"disclaimer": "By clicking on ”GET MY PLAN” I agree to pay $15.19. If I do not cancel before the end of the 4-week plan, it will convert to a regular 4-week subscription, and GO-SLIM will automatically charge me the regular price of $38.95 every 4 weeks until I cancel. I can cancel via the Contact Us link to avoid being charged for the next billing cycle."
+			},
+			{
+				"id": "615370",
+				"weeks": 12,
+				"price": 66.65,
+				"currency": "USD",
+				"name": "12-WEEK PLAN",
+				"description": "Exercising for 12+ weeks yields more health benefits",
+				"link": "https://www.checkout-ds24.com/product/615370/219850?first_paymethod=paypal",
+				"promo": "RECOMMENDED FOR YOU",
+				"disclaimer": "By clicking on ”GET MY PLAN” I agree to pay $25.99. If I do not cancel before the end of the 12-week plan, it will convert to a regular 12-week subscription, and GO-SLIM will automatically charge my payment method the regular price of $66.65 every 12 weeks until I cancel. I can cancel via the Contact Us link to avoid being charged for the next billing cycle."
+			}
+		]
+	},
+    "split_test": {
+        "experiment_id": "1004183555",
+        "name": "Test A/A",
+        "variations": [
+			{
+				"id": "1004431714",
+				"control": true
+			},
+            {
+                "id": "1004431715",
+                "name": "A",
+                "description": "Variation A - no content change",
+                "weight": 0.5,
+                "content": {
+                
+                }
+            }
+        ]
+    }
+}

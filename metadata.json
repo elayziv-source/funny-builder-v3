@@ -1,0 +1,8 @@
+{
+  "name": "Funny Builder V3",
+  "description": "An internal tool to visually build quiz funnels and export JSON configurations.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
