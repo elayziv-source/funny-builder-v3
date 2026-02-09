@@ -305,6 +305,40 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange }) =
             />
             <span className="truncate flex-1 select-none">{page?.name || 'Untitled'}</span>
 
+            {/* Route indicator — shows on hover */}
+            {(() => {
+                const currentPathNum = parseInt(page?.path || '0');
+                // Find events owned by this page
+                let routeTarget: string | null = null;
+                let isSeq = false;
+                let hasCond = false;
+                if (page?.template_data && config.event_routing) {
+                    for (const val of Object.values(page.template_data)) {
+                        if (typeof val === 'string' && config.event_routing[val]?.route?.to) {
+                            routeTarget = config.event_routing[val].route.to;
+                            isSeq = parseInt(routeTarget!) === currentPathNum + 1;
+                            hasCond = Array.isArray(config.event_routing[val]?.route?.conditions) && config.event_routing[val].route.conditions.length > 0;
+                            break;
+                        }
+                    }
+                }
+                if (!routeTarget) return null;
+                return (
+                    <span
+                        className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-0.5 flex-shrink-0"
+                        title={isSeq ? `Routes to next page (${routeTarget})` : `Custom route to page ${routeTarget}`}
+                    >
+                        {hasCond ? (
+                            <GitBranch size={8} className="text-purple-400" />
+                        ) : isSeq ? (
+                            <span className="text-[7px] font-bold text-green-400">&#9654;{routeTarget}</span>
+                        ) : (
+                            <span className="text-[7px] font-bold text-amber-400">&#9654;{routeTarget}</span>
+                        )}
+                    </span>
+                );
+            })()}
+
             <div className="opacity-0 group-hover:opacity-100 flex gap-0.5 transition-opacity flex-shrink-0">
                 <button
                     type="button"

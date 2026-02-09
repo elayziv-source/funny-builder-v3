@@ -185,36 +185,85 @@ export const FunnelProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   };
 
   /**
+   * Build a map of event name -> owner page key by scanning template_data
+   * for string values that match event routing keys.
+   */
+  const buildEventOwnerMap = (
+      pages: Record<string, PageConfig>,
+      routing: Record<string, any>
+  ): Record<string, string> => {
+      const ownerMap: Record<string, string> = {};
+      const eventNames = new Set(Object.keys(routing));
+      Object.entries(pages).forEach(([pageKey, page]) => {
+          if (page.template_data) {
+              Object.values(page.template_data).forEach(val => {
+                  if (typeof val === 'string' && eventNames.has(val)) {
+                      ownerMap[val] = pageKey;
+                  }
+              });
+          }
+      });
+      return ownerMap;
+  };
+
+  /**
    * After reindexing pages, update all event_routing route.to values
-   * to match the new path numbers.
+   * using smart sequential detection:
+   *  - If an event's route.to was "next page" (ownerPath + 1), keep it as
+   *    the owner's new path + 1 so the sequential flow follows visual order.
+   *  - If the route was non-sequential (custom jump), preserve the target
+   *    page identity via pathMap so the link follows the specific page.
+   *  - Conditional branch targets always preserve page identity via pathMap.
    */
   const reindexEventRouting = (
       oldPages: Record<string, PageConfig>,
       newPages: Record<string, PageConfig>,
       routing: Record<string, any>
-  ): Record<string, any> => {
-      // Build a map of old path -> new path
+  ): { routing: Record<string, any>; sequentialCount: number; customCount: number } => {
+      // Build a map of old path -> new path (by page key identity)
       const pathMap: Record<string, string> = {};
-      const oldPageEntries = Object.entries(oldPages);
-      const newPageEntries = Object.entries(newPages);
-
-      // Map by page key: oldPages[key].path -> newPages[key].path
-      oldPageEntries.forEach(([key, oldPage]) => {
+      Object.entries(oldPages).forEach(([key, oldPage]) => {
           const newPage = newPages[key];
           if (newPage && oldPage.path !== newPage.path) {
               pathMap[oldPage.path] = newPage.path;
           }
       });
 
-      if (Object.keys(pathMap).length === 0) return routing;
+      if (Object.keys(pathMap).length === 0 && Object.keys(routing).length === 0) {
+          return { routing, sequentialCount: 0, customCount: 0 };
+      }
+
+      // Map event -> owner page key (using OLD pages, before reorder)
+      const eventOwnerMap = buildEventOwnerMap(oldPages, routing);
+
+      let sequentialCount = 0;
+      let customCount = 0;
 
       const newRouting = JSON.parse(JSON.stringify(routing));
       for (const eventName in newRouting) {
           const event = newRouting[eventName];
-          if (event?.route?.to && pathMap[event.route.to]) {
-              event.route.to = pathMap[event.route.to];
+          if (!event?.route?.to) continue;
+
+          const ownerPageKey = eventOwnerMap[eventName];
+          const ownerOldPath = ownerPageKey ? oldPages[ownerPageKey]?.path : null;
+          const ownerNewPath = ownerPageKey ? newPages[ownerPageKey]?.path : null;
+
+          // Check if this event followed the sequential "next page" pattern
+          const oldRouteTo = event.route.to;
+          const wasSequential = ownerOldPath != null &&
+              parseInt(oldRouteTo) === parseInt(ownerOldPath) + 1;
+
+          if (wasSequential && ownerNewPath != null) {
+              // Maintain "next page" semantics — route to owner's new position + 1
+              event.route.to = (parseInt(ownerNewPath) + 1).toString();
+              sequentialCount++;
+          } else if (pathMap[oldRouteTo]) {
+              // Non-sequential: follow the specific target page to its new position
+              event.route.to = pathMap[oldRouteTo];
+              customCount++;
           }
-          // Also reindex conditional route targets
+
+          // Conditional branch targets always preserve page identity
           if (Array.isArray(event?.route?.conditions)) {
               for (const cond of event.route.conditions) {
                   if (cond.target && pathMap[cond.target]) {
@@ -223,7 +272,7 @@ export const FunnelProvider: React.FC<{ children: React.ReactNode }> = ({ childr
               }
           }
       }
-      return newRouting;
+      return { routing: newRouting, sequentialCount, customCount };
   };
 
   const updatePage = (pageId: string, newConfig: PageConfig) => {
@@ -268,7 +317,7 @@ export const FunnelProvider: React.FC<{ children: React.ReactNode }> = ({ childr
      setConfig((prev) => {
        const updatedPages = { ...prev.pages, [pageId]: newConfig };
        const reindexed = reindexPages(updatedPages);
-       const updatedRouting = reindexEventRouting(prev.pages, reindexed, prev.event_routing);
+       const { routing: updatedRouting } = reindexEventRouting(prev.pages, reindexed, prev.event_routing);
        return {
          ...prev,
          pages: reindexed,
@@ -302,7 +351,7 @@ export const FunnelProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       const reindexed = reindexPages(newPagesRaw);
 
       setConfig(prev => {
-          const updatedRouting = reindexEventRouting(prev.pages, reindexed, prev.event_routing);
+          const { routing: updatedRouting } = reindexEventRouting(prev.pages, reindexed, prev.event_routing);
           return {
               ...prev,
               pages: reindexed,
@@ -313,6 +362,8 @@ export const FunnelProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   };
 
   const reorderPages = (newOrder: string[]) => {
+      let seqCount = 0;
+      let custCount = 0;
       setConfig(prev => {
           const newPagesRaw: Record<string, PageConfig> = {};
           newOrder.forEach(key => {
@@ -321,9 +372,18 @@ export const FunnelProvider: React.FC<{ children: React.ReactNode }> = ({ childr
               }
           });
           const reindexed = reindexPages(newPagesRaw);
-          const updatedRouting = reindexEventRouting(prev.pages, reindexed, prev.event_routing);
+          const { routing: updatedRouting, sequentialCount, customCount } = reindexEventRouting(prev.pages, reindexed, prev.event_routing);
+          seqCount = sequentialCount;
+          custCount = customCount;
           return { ...prev, pages: reindexed, event_routing: updatedRouting };
       });
+      // Show routing change summary toast
+      if (seqCount > 0 || custCount > 0) {
+          const parts: string[] = [];
+          if (seqCount > 0) parts.push(`${seqCount} route${seqCount > 1 ? 's' : ''} follow new order`);
+          if (custCount > 0) parts.push(`${custCount} custom route${custCount > 1 ? 's' : ''} preserved`);
+          notify(`Routing updated: ${parts.join(', ')}`, 'info');
+      }
   };
 
   // --- ROBUST DELETE PAGE FUNCTION ---
@@ -356,7 +416,7 @@ export const FunnelProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           const reindexed = reindexPages(remainingPagesObj);
 
           // Clean up event routing: fix route.to values after reindex
-          const updatedRouting = reindexEventRouting(prev.pages, reindexed, prev.event_routing);
+          const { routing: updatedRouting } = reindexEventRouting(prev.pages, reindexed, prev.event_routing);
 
           return {
               ...prev,

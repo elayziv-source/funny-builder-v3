@@ -1209,16 +1209,98 @@ export const StepEditor: React.FC = () => {
                     </div>
                 </section>
 
-                {/* Routing / Path Section (Read Only Hint) */}
+                {/* Routing / Path Section */}
                 <section>
-                    <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b pb-2">Routing Info</h3>
-                    <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 text-blue-800 text-sm">
-                        <p className="mb-2"><strong>Path ID:</strong> {activePage.path}</p>
-                        <p className="text-xs">
-                            Note: The visual order in the sidebar automatically determines the flow. 
-                            When you export the configuration, this page will link to the next one in the list automatically.
-                        </p>
-                    </div>
+                    <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b pb-2">Routing</h3>
+                    {(() => {
+                        const allPages = Object.entries(config.pages)
+                            .filter(([k]) => k !== '__template_preview__')
+                            .map(([k, p]: [string, any]) => ({ key: k, path: p.path, name: p.name || k }))
+                            .sort((a, b) => parseInt(a.path) - parseInt(b.path));
+                        const currentPathNum = parseInt(activePage.path);
+                        const nextPath = (currentPathNum + 1).toString();
+                        const nextPage = allPages.find(p => p.path === nextPath);
+                        const isLastPage = !nextPage;
+
+                        // Find events owned by this page
+                        const ownedEvents: { eventName: string; routeTo: string | null; isSequential: boolean; hasConditions: boolean }[] = [];
+                        if (activePage.template_data && config.event_routing) {
+                            Object.values(activePage.template_data).forEach(val => {
+                                if (typeof val === 'string' && config.event_routing[val]) {
+                                    const evt = config.event_routing[val];
+                                    const routeTo = evt?.route?.to || null;
+                                    const isSeq = routeTo != null && parseInt(routeTo) === currentPathNum + 1;
+                                    ownedEvents.push({
+                                        eventName: val,
+                                        routeTo,
+                                        isSequential: isSeq,
+                                        hasConditions: Array.isArray(evt?.route?.conditions) && evt.route.conditions.length > 0
+                                    });
+                                }
+                            });
+                        }
+
+                        return (
+                            <div className="space-y-3">
+                                {/* Current position */}
+                                <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-xl border border-gray-200">
+                                    <span className="text-xs font-bold text-gray-500 w-20">Position</span>
+                                    <span className="font-mono text-sm font-bold text-gray-800 bg-white px-2 py-0.5 rounded border border-gray-200">{activePage.path}</span>
+                                    <span className="text-xs text-gray-400">of {allPages.length}</span>
+                                </div>
+
+                                {/* Default flow (next page) */}
+                                <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-xl border border-gray-200">
+                                    <span className="text-xs font-bold text-gray-500 w-20">Next page</span>
+                                    {isLastPage ? (
+                                        <span className="text-xs text-gray-400 italic">Last page (end of funnel)</span>
+                                    ) : (
+                                        <span className="text-xs text-gray-700">
+                                            <span className="font-mono font-bold">{nextPath}</span> — {nextPage.name}
+                                        </span>
+                                    )}
+                                </div>
+
+                                {/* Event routing summary */}
+                                {ownedEvents.length > 0 && (
+                                    <div className="space-y-2">
+                                        <span className="text-[10px] font-bold text-gray-400 uppercase">Event Routes</span>
+                                        {ownedEvents.map(evt => {
+                                            const targetPage = allPages.find(p => p.path === evt.routeTo);
+                                            return (
+                                                <div key={evt.eventName} className="flex items-center gap-2 bg-white p-2.5 rounded-lg border border-gray-200">
+                                                    <span className="font-mono text-[10px] text-[#f51721] font-bold truncate max-w-[100px]">{evt.eventName}</span>
+                                                    <ArrowRight size={10} className="text-gray-400 flex-shrink-0" />
+                                                    {evt.isSequential ? (
+                                                        <span className="flex items-center gap-1">
+                                                            <span className="bg-green-100 text-green-700 text-[9px] font-bold px-1.5 py-0.5 rounded">AUTO</span>
+                                                            <span className="text-xs text-gray-600">Next page ({evt.routeTo})</span>
+                                                        </span>
+                                                    ) : evt.routeTo ? (
+                                                        <span className="flex items-center gap-1">
+                                                            <span className="bg-amber-100 text-amber-700 text-[9px] font-bold px-1.5 py-0.5 rounded">CUSTOM</span>
+                                                            <span className="text-xs text-gray-600">{targetPage ? `${targetPage.path} — ${targetPage.name}` : `Path ${evt.routeTo}`}</span>
+                                                        </span>
+                                                    ) : (
+                                                        <span className="text-xs text-gray-400 italic">No route</span>
+                                                    )}
+                                                    {evt.hasConditions && (
+                                                        <GitBranch size={10} className="text-purple-500 flex-shrink-0 ml-auto" title="Has conditional branches" />
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                )}
+
+                                {/* Hint */}
+                                <p className="text-[10px] text-gray-400 leading-relaxed">
+                                    Drag pages in the sidebar to reorder. Sequential routes (<span className="text-green-600 font-bold">AUTO</span>) automatically follow the new order.
+                                    Custom routes (<span className="text-amber-600 font-bold">CUSTOM</span>) preserve their target. Edit routes in the Events panel.
+                                </p>
+                            </div>
+                        );
+                    })()}
                 </section>
 
                 {/* Tracking Events Section */}
